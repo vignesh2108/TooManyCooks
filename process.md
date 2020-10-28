@@ -7,3 +7,5 @@
 - We also had a discussion regarding whether or not the Spy would be able to kill other chefs in scenarios where they are caught in the act.(This was thought of in order to consider the possibility of giving the spy a chance to fix things). In such a case, the spy would also have to hide the body and clean up the mess. This led to further discussion regarding the decision to add visual cues while the spy poisons something.
 - Another idea to avoid this was to have poisoned versions of the ingredients that the spy would use instead of poisoning the dishes. We thought this would make it a little more discreet. We were thinking somewhere along the lines of having a pantry where the poisoned items would be visible only to the spy behind a blank box.
 - We realised that one key aspect to keep in mind during the design phase of the game is the balance between the difficulty for the Spy and the chefs. Especially in games like these, it would be very crucial to strike this balance.
+
+![Brainstorming](/images/brainstorming.png)
