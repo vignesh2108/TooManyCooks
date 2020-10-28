@@ -8,4 +8,5 @@
 - Another idea to avoid this was to have poisoned versions of the ingredients that the spy would use instead of poisoning the dishes. We thought this would make it a little more discreet. We were thinking somewhere along the lines of having a pantry where the poisoned items would be visible only to the spy behind a blank box.
 - We realised that one key aspect to keep in mind during the design phase of the game is the balance between the difficulty for the Spy and the chefs. Especially in games like these, it would be very crucial to strike this balance.
 
-![Brainstorming](/images/brainstorming.png)
+<p align="center"><img src="/images/brainstorming.png" alt="brainstorming" width="500"/><p>
+
