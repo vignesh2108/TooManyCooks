@@ -10,3 +10,19 @@
 
 <p align="center"><img src="/images/brainstorming.png" alt="brainstorming" width="500"/><p>
 
+# Final Project: Core Values and Mechanics
+
+## Core Values
+  * The core values explored in our game are of co-operation and subterfuge. An uninformed majority of players are pitted against an informed adversary where majority of players do not know who the adversary is, and try and determine the rogue player through observation and deduction. 
+  
+## Core Mechanics
+  *  The game involves players completing a set of dishes within a given time (approx 10 minutes), if all dishes are completed, then the chefs win.
+  *  One player is assgined the role of a spy who has access to a set of poisoned ingredients, that other players cannot access. 
+  *  If a dish that is poisoned is served, the dignitary who consumes it will be escorted out by medical team due to food poisoning - this triggers a vote among players to identify a potential spy. If the spy is voted out, the game ends, and the chefs win.
+  *  If the chefs fail to serve all dishes in time or half the dignitiaries are poisoned, the spy wins. 
+  *  The game mechanic involves moving between various stations (oven station, dessert station, prep station, etc) to collect and process ingredients to make a dish as indicated by a task bar showing the combinations of ingredients needed for a dish. 
+  *  There are visual cues that show a dish is being poisoned but a poisoned dish doesn't differ visually from a normal dish. 
+  * Pans can be poisoned while empty, which requires players to clean it (costing them time).
+  * The spy also has access to the electrical room to turn off power to ovens or lights. 
+  * Players have only one chance to vote out the spy if they are certain by calling a meeting. 
+  
