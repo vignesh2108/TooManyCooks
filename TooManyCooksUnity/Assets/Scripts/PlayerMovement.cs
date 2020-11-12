@@ -1,9 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using Mirror;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : NetworkBehaviour
 {
     public Joystick joystick;  
     public Rigidbody rb;
@@ -14,21 +16,53 @@ public class PlayerMovement : MonoBehaviour
     bool hasItem; 
     public float moveSpeed;
     // public Button useButton;
-     
+    
+    // Network Movement
+    [SyncVar] private Vector3 movementForce;
+    private PhysicsLink physicsLink;
+
     void Start()
     {
+        //physicsLink = GetComponent<PhysicsLink>();
         rb = GetComponent<Rigidbody>();
+        if (hasAuthority)
+        {
+            joystick = FloatingJoystick.S;
+        }
         canpickup = false;    //setting both to false
         hasItem = false;
         
     }
     
-
+    
+    
+    [Client]
     // Update is called once per frame
     void FixedUpdate()
     {
-        // transform.Translate(Input.GetAxis("Horizontal")*10*moveSpeed*Time.deltaTime, 0f,Input.GetAxis("Vertical")*10*moveSpeed*Time.deltaTime);
-        rb.velocity = new Vector3(joystick.Horizontal*moveSpeed, rb.velocity.y,joystick.Vertical*moveSpeed);
+       
+        // prevent clients from updating other player objects.
+        if (!hasAuthority) { return;}
+        
+        
+        //movementForce = new Vector3(joystick.Horizontal * 0.2f, 0,joystick.Vertical * 0.2f);
+        if (Application.platform == RuntimePlatform.IPhonePlayer || Application.platform == RuntimePlatform.Android)
+        {
+            movementForce = new Vector3(joystick.Horizontal * moveSpeed, 0, joystick.Vertical * moveSpeed);
+        }
+        else
+        {
+            movementForce = new Vector3(Input.GetAxis("Horizontal") * moveSpeed, 0, Input.GetAxis("Vertical") * moveSpeed);
+        }
+
+        rb.velocity = movementForce;
+
+        // Tell server to move player
+        //physicsLink.ApplyForce(movementForce, ForceMode.VelocityChange);
+
+       
+        
+        
         if(canpickup == true) // if you enter thecollider of the objecct
         {
             if (Input.GetButtonDown("Fire1")) // can be e or any key
@@ -46,6 +80,8 @@ public class PlayerMovement : MonoBehaviour
             hasItem = false;
         }
     }
+
+  
     private void OnTriggerEnter(Collider other) // to see when the player enters the collider
     {
         if(other.gameObject.tag == "Pickable") //on the object you want to pick up set the tag to be anything, in this case "object"
