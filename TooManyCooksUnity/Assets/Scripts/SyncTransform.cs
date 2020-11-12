@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.Networking;
  
+// Based on https://forum.unity.com/threads/network-transform-lags.334718/
 public class SyncTransform : NetworkBehaviour
 {
  

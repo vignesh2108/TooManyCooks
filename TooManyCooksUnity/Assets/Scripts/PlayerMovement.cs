@@ -9,21 +9,24 @@ public class PlayerMovement : NetworkBehaviour
 {
     public Joystick joystick;  
     public Rigidbody rb;
-    // Start is called before the first frame update
+    
+    
     public GameObject myHands; //reference to your hands/the position where you want your object to go
     bool canpickup; //a bool to see if you can or cant pick up the item
     GameObject ObjectIwantToPickUp; // the gameobject onwhich you collided with
     bool hasItem; 
-    public float moveSpeed;
-    // public Button useButton;
     
-    // Network Movement
-    [SyncVar] private Vector3 movementForce;
-    private PhysicsLink physicsLink;
+    // Environment
+    private bool isMobile;
+    
+    // Movement
+    private Vector3 movementForce;
+    public float moveSpeed;
 
+    // Start is called before the first frame update
     void Start()
     {
-        //physicsLink = GetComponent<PhysicsLink>();
+
         rb = GetComponent<Rigidbody>();
         if (hasAuthority)
         {
@@ -36,17 +39,15 @@ public class PlayerMovement : NetworkBehaviour
     
     
     
-    [Client]
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
        
         // prevent clients from updating other player objects.
-        if (!hasAuthority) { return;}
+        if (!isLocalPlayer) { return;}
         
         
-        //movementForce = new Vector3(joystick.Horizontal * 0.2f, 0,joystick.Vertical * 0.2f);
-        if (Application.platform == RuntimePlatform.IPhonePlayer || Application.platform == RuntimePlatform.Android)
+        if (GameManager.S.isMobile)
         {
             movementForce = new Vector3(joystick.Horizontal * moveSpeed, 0, joystick.Vertical * moveSpeed);
         }
@@ -57,12 +58,6 @@ public class PlayerMovement : NetworkBehaviour
 
         rb.velocity = movementForce;
 
-        // Tell server to move player
-        //physicsLink.ApplyForce(movementForce, ForceMode.VelocityChange);
-
-       
-        
-        
         if(canpickup == true) // if you enter thecollider of the objecct
         {
             if (Input.GetButtonDown("Fire1")) // can be e or any key
