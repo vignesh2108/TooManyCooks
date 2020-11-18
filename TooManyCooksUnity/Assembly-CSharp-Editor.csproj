@@ -300,26 +300,26 @@
  <Reference Include="UnityEditor.iOS.Extensions">
  <HintPath>/Applications/Unity/Hub/Editor/2019.4.8f1/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.dll</HintPath>
  </Reference>
- <Reference Include="Mono.CecilX.Mdb">
- <HintPath>/Users/arjun/cu/gamedev/TooManyCooks/TooManyCooksUnity/Assets/Mirror/Plugins/Mono.Cecil/Mono.CecilX.Mdb.dll</HintPath>
- </Reference>
- <Reference Include="Mono.CecilX.Pdb">
- <HintPath>/Users/arjun/cu/gamedev/TooManyCooks/TooManyCooksUnity/Assets/Mirror/Plugins/Mono.Cecil/Mono.CecilX.Pdb.dll</HintPath>
- </Reference>
  <Reference Include="Mono.CecilX">
- <HintPath>/Users/arjun/cu/gamedev/TooManyCooks/TooManyCooksUnity/Assets/Mirror/Plugins/Mono.Cecil/Mono.CecilX.dll</HintPath>
- </Reference>
- <Reference Include="Mono.CecilX.Rocks">
- <HintPath>/Users/arjun/cu/gamedev/TooManyCooks/TooManyCooksUnity/Assets/Mirror/Plugins/Mono.Cecil/Mono.CecilX.Rocks.dll</HintPath>
- </Reference>
- <Reference Include="NSubstitute">
- <HintPath>/Users/arjun/cu/gamedev/TooManyCooks/TooManyCooksUnity/Assets/Mirror/Tests/Common/NSubstitute.dll</HintPath>
+ <HintPath>/Users/arjun/cu/gamedev/TooManyCooks/TooManyCooksUnity/Assets/Plugins/Mirror/Plugins/Mono.Cecil/Mono.CecilX.dll</HintPath>
  </Reference>
  <Reference Include="Castle.Core">
- <HintPath>/Users/arjun/cu/gamedev/TooManyCooks/TooManyCooksUnity/Assets/Mirror/Tests/Common/Castle.Core.dll</HintPath>
+ <HintPath>/Users/arjun/cu/gamedev/TooManyCooks/TooManyCooksUnity/Assets/Plugins/Mirror/Tests/Common/Castle.Core.dll</HintPath>
+ </Reference>
+ <Reference Include="NSubstitute">
+ <HintPath>/Users/arjun/cu/gamedev/TooManyCooks/TooManyCooksUnity/Assets/Plugins/Mirror/Tests/Common/NSubstitute.dll</HintPath>
+ </Reference>
+ <Reference Include="Mono.CecilX.Mdb">
+ <HintPath>/Users/arjun/cu/gamedev/TooManyCooks/TooManyCooksUnity/Assets/Plugins/Mirror/Plugins/Mono.Cecil/Mono.CecilX.Mdb.dll</HintPath>
  </Reference>
  <Reference Include="System.Threading.Tasks.Extensions">
- <HintPath>/Users/arjun/cu/gamedev/TooManyCooks/TooManyCooksUnity/Assets/Mirror/Tests/Common/System.Threading.Tasks.Extensions.dll</HintPath>
+ <HintPath>/Users/arjun/cu/gamedev/TooManyCooks/TooManyCooksUnity/Assets/Plugins/Mirror/Tests/Common/System.Threading.Tasks.Extensions.dll</HintPath>
+ </Reference>
+ <Reference Include="Mono.CecilX.Pdb">
+ <HintPath>/Users/arjun/cu/gamedev/TooManyCooks/TooManyCooksUnity/Assets/Plugins/Mirror/Plugins/Mono.Cecil/Mono.CecilX.Pdb.dll</HintPath>
+ </Reference>
+ <Reference Include="Mono.CecilX.Rocks">
+ <HintPath>/Users/arjun/cu/gamedev/TooManyCooks/TooManyCooksUnity/Assets/Plugins/Mirror/Plugins/Mono.Cecil/Mono.CecilX.Rocks.dll</HintPath>
  </Reference>
  <Reference Include="nunit.framework">
  <HintPath>/Users/arjun/cu/gamedev/TooManyCooks/TooManyCooksUnity/Library/PackageCache/com.unity.ext.nunit@1.0.0/net35/unity-custom/nunit.framework.dll</HintPath>
@@ -749,6 +749,10 @@
     <ProjectReference Include="SimpleWebTransport.csproj">
       <Project>{4133b98e-4f74-a660-1917-b61d5f43ef4e}</Project>
       <Name>SimpleWebTransport</Name>
+    </ProjectReference>
+    <ProjectReference Include="OEBIF.csproj">
+      <Project>{50c641e3-2a63-4ded-4238-bf019e970b1e}</Project>
+      <Name>OEBIF</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

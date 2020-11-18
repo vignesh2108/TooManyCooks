@@ -1,10 +1,13 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using Mirror;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager S;
+    public GameObject sceneObjectPrefab;
     public bool isMobile;
     private void Awake()
     {
@@ -16,6 +19,11 @@ public class GameManager : MonoBehaviour
         {
             Destroy(this);
         }
+    }
+
+    private void Start()
+    {
+        
     }
 
     // Update is called once per frame

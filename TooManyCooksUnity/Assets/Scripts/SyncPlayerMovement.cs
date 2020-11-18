@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.Networking;
  
 // Based on https://forum.unity.com/threads/network-transform-lags.334718/
-public class SyncTransform : NetworkBehaviour
+public class SyncPlayerMovement : NetworkBehaviour
 {
  
     [SyncVar]
@@ -49,9 +49,10 @@ public class SyncTransform : NetworkBehaviour
         {
             if (Vector3.Distance(myTransform.position, lastPos) > posThreshold || Quaternion.Angle(myTransform.rotation, lastRot) > rotThreshold)
             {
-                Cmd_ProvidePositionToServer(myTransform.position, myTransform.localEulerAngles.y);
+                var position = myTransform.position;
+                Cmd_ProvidePositionToServer(position, myTransform.localEulerAngles.y);
  
-                lastPos = myTransform.position;
+                lastPos = position;
                 lastRot = myTransform.rotation;
             }
         }
