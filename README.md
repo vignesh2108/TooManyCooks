@@ -14,6 +14,9 @@ The main idea of this project is to make a game combining the mechanics of “Ov
 
 The game mechanic borrows concepts of cooking dishes according to a recipe from Overcooked and the concept of a spy/imposter from Among Us. While the two games have very different communication needs between players we hope to incorporate them in a way that balances the need for extensive communication in Overcooked with the concept of designated periods of communication from Among Us.
 
+# Unity Requirement
+
+This project depends on the Mirror-Networking library and hence only works on Unity 2019 LTS or Unity 2018 LTS.
 
 # Requirements/Dependencies
 
