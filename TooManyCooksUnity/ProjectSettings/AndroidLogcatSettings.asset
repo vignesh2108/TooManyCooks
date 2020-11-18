@@ -3,165 +3,51 @@
     "m_SelectedPackage": {
         "deviceId": "93BAY08VW6",
         "name": "com.CUGameDev.TooManyCooksUnity",
-        "processId": 21664,
+        "processId": 23157,
         "exited": false
     },
     "m_SelectedPriority": 0,
     "m_KnownPackagesForSerialization": [
         {
             "deviceId": "93BAY08VW6",
-            "name": "com.DefaultCompany.TooManyCooksUnity",
-            "processId": 26127,
-            "exited": true
-        },
-        {
-            "deviceId": "93BAY08VW6",
-            "name": "com.DefaultCompany.TooManyCooksUnity",
-            "processId": 28778,
-            "exited": false
-        },
-        {
-            "deviceId": "93BAY08VW6",
-            "name": "com.DefaultCompany.TooManyCooksUnity",
-            "processId": 30040,
-            "exited": true
-        },
-        {
-            "deviceId": "93BAY08VW6",
-            "name": "com.CUGameDev.TooManyCooksUnity",
-            "processId": 32290,
-            "exited": false
-        },
-        {
-            "deviceId": "93BAY08VW6",
-            "name": "com.CUGameDev.TooManyCooksUnity",
-            "processId": 6580,
-            "exited": false
-        },
-        {
-            "deviceId": "93BAY08VW6",
-            "name": "com.CUGameDev.TooManyCooksUnity",
-            "processId": 7721,
-            "exited": false
-        },
-        {
-            "deviceId": "93BAY08VW6",
-            "name": "com.CUGameDev.TooManyCooksUnity",
-            "processId": 8918,
-            "exited": true
-        },
-        {
-            "deviceId": "93BAY08VW6",
-            "name": "com.CUGameDev.TooManyCooksUnity",
-            "processId": 26122,
-            "exited": true
-        },
-        {
-            "deviceId": "93BAY08VW6",
-            "name": "com.CUGameDev.TooManyCooksUnity",
-            "processId": 26546,
-            "exited": false
-        },
-        {
-            "deviceId": "93BAY08VW6",
-            "name": "com.CUGameDev.TooManyCooksUnity",
-            "processId": 27346,
-            "exited": true
-        },
-        {
-            "deviceId": "93BAY08VW6",
-            "name": "com.CUGameDev.TooManyCooksUnity",
-            "processId": 27680,
-            "exited": false
-        },
-        {
-            "deviceId": "93BAY08VW6",
-            "name": "com.CUGameDev.TooManyCooksUnity",
-            "processId": 17429,
-            "exited": false
-        },
-        {
-            "deviceId": "93BAY08VW6",
-            "name": "com.CUGameDev.TooManyCooksUnity",
-            "processId": 18595,
-            "exited": false
-        },
-        {
-            "deviceId": "93BAY08VW6",
-            "name": "com.CUGameDev.TooManyCooksUnity",
-            "processId": 19512,
-            "exited": false
-        },
-        {
-            "deviceId": "93BAY08VW6",
-            "name": "com.CUGameDev.TooManyCooksUnity",
-            "processId": 20212,
-            "exited": false
-        },
-        {
-            "deviceId": "93BAY08VW6",
-            "name": "com.CUGameDev.TooManyCooksUnity",
-            "processId": 20715,
-            "exited": false
-        },
-        {
-            "deviceId": "93BAY08VW6",
-            "name": "com.CUGameDev.TooManyCooksUnity",
-            "processId": 21004,
-            "exited": false
-        },
-        {
-            "deviceId": "93BAY08VW6",
-            "name": "com.CUGameDev.TooManyCooksUnity",
-            "processId": 21708,
-            "exited": false
-        },
-        {
-            "deviceId": "93BAY08VW6",
-            "name": "com.CUGameDev.TooManyCooksUnity",
-            "processId": 22029,
-            "exited": false
-        },
-        {
-            "deviceId": "93BAY08VW6",
-            "name": "com.CUGameDev.TooManyCooksUnity",
-            "processId": 22342,
-            "exited": false
-        },
-        {
-            "deviceId": "93BAY08VW6",
-            "name": "com.CUGameDev.TooManyCooksUnity",
-            "processId": 811,
-            "exited": false
-        },
-        {
-            "deviceId": "93BAY08VW6",
             "name": "com.CUGameDev.TooManyCooksUnity",
             "processId": 2980,
-            "exited": false
+            "exited": true
         },
         {
             "deviceId": "93BAY08VW6",
             "name": "com.CUGameDev.TooManyCooksUnity",
             "processId": 5323,
-            "exited": false
+            "exited": true
         },
         {
             "deviceId": "93BAY08VW6",
             "name": "com.CUGameDev.TooManyCooksUnity",
             "processId": 11053,
-            "exited": false
+            "exited": true
         },
         {
             "deviceId": "93BAY08VW6",
             "name": "com.CUGameDev.TooManyCooksUnity",
             "processId": 21280,
-            "exited": false
+            "exited": true
         },
         {
             "deviceId": "93BAY08VW6",
             "name": "com.CUGameDev.TooManyCooksUnity",
             "processId": 21664,
+            "exited": true
+        },
+        {
+            "deviceId": "93BAY08VW6",
+            "name": "com.google.android.apps.nexuslauncher",
+            "processId": 16935,
+            "exited": false
+        },
+        {
+            "deviceId": "93BAY08VW6",
+            "name": "com.CUGameDev.TooManyCooksUnity",
+            "processId": 23157,
             "exited": false
         },
         {

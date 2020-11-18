@@ -73,20 +73,6 @@ public class SceneObject : NetworkBehaviour
        
     }
     
-    void callPickupOnPlayer()
-    {
-        PlayerEquip player = NetworkClient.connection.identity.GetComponent<PlayerEquip>();
-        if (player.canPickup)
-        {
-            player.CmdPickupItem(gameObject);
-        }
-
-    }
-
-    void OnMouseDown()
-    {
-        callPickupOnPlayer();
-    }
     
     private void OnCollisionEnter(Collision other) // to see when the player enters the collider
     {
