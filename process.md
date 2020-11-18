@@ -26,3 +26,22 @@
   * The spy also has access to the electrical room to turn off power to ovens or lights. 
   * Players have only one chance to vote out the spy if they are certain by calling a meeting. 
   
+  # Final Game Process: Game Sound
+  
+  ### General 
+  * Using ogg audio or low-size audio due to the game being mobile based.
+  ### Player Sounds
+  * Walking, chopping, pickup, drop, interaction with utensils and equipment
+  ### Global Elements
+  * Ambient music for the game. Get's more exciting as the timer counts down. 
+  * The restaurant in the game probably has some music playing 
+  * Buzzer sounds for the last 10 seconds
+  ### Additional sound effects
+  * Voting menu music (eerie)
+  * Emergency meeting indicator(buzzer)
+  * Poisoning of Dignitary
+  * Food items getting overcooked (when ingredients are left for too long on the stove or oven)
+  * Served on time chime (When the dish is prepared according to the specifications and served on time)
+  * Served wrong item buzzer(when a served dish doesn't match the given description)
+  
+  
