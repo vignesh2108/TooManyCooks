@@ -23,5 +23,10 @@ This project depends on the Mirror-Networking library and hence only works on Un
 * You need to install external libraries needed before you can run this project. Create a directory called "Plugins" in your assets folder.
 * Download Mirror-Networking library from [GitHub](https://github.com/vis2k/Mirror) and extract it to Assets/Plugins/Mirror
 * Download the Outline-Effect package from [Unity's Asset store](https://assetstore.unity.com/packages/vfx/shaders/fullscreen-camera-effects/outline-effect-78608?_ga=2.193017641.54904738.1605652046-419139560.1598140620) and place it in Assets/Plugins/OutlineEffect
+* Unity Assets:
+  - [Storage Room](https://assetstore.unity.com/packages/3d/environments/urban/low-poly-storage-pack-101732)
+  - [Kitchen Props](https://assetstore.unity.com/packages/3d/props/food-and-kitchen-props-pack-85050)
+  - [Coffee Shop](https://assetstore.unity.com/packages/3d/props/coffeeshop-starter-pack-160914)
+  
 
 
