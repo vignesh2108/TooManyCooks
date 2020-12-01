@@ -132,7 +132,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   rb: {fileID: 614427496954196580}
-  moveSpeed: 40
+  moveSpeed: 70
 --- !u!114 &2455731034340831062
 MonoBehaviour:
   m_ObjectHideFlags: 0
