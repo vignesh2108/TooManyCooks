@@ -3,7 +3,7 @@
     "m_SelectedPackage": {
         "deviceId": "93BAY08VW6",
         "name": "com.CUGameDev.TooManyCooksUnity",
-        "processId": 23157,
+        "processId": 12049,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -48,6 +48,18 @@
             "deviceId": "93BAY08VW6",
             "name": "com.CUGameDev.TooManyCooksUnity",
             "processId": 23157,
+            "exited": false
+        },
+        {
+            "deviceId": "93BAY08VW6",
+            "name": "com.CUGameDev.TooManyCooksUnity",
+            "processId": 20111,
+            "exited": false
+        },
+        {
+            "deviceId": "93BAY08VW6",
+            "name": "com.CUGameDev.TooManyCooksUnity",
+            "processId": 12049,
             "exited": false
         },
         {

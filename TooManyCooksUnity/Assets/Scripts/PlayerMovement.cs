@@ -7,7 +7,8 @@ using UnityEngine.UI;
 
 public class PlayerMovement : NetworkBehaviour
 {
-    public Joystick joystick;  
+    private Joystick joystick;
+    private CameraScript camera;
     public Rigidbody rb;
     
     
@@ -21,10 +22,12 @@ public class PlayerMovement : NetworkBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        transform.position = new Vector3(transform.position.x, 8.5f, transform.position.z);
         rb = GetComponent<Rigidbody>();
         if (hasAuthority)
         {
             joystick = FloatingJoystick.S;
+            camera = CameraScript.S;
         }
      
      
@@ -54,6 +57,10 @@ public class PlayerMovement : NetworkBehaviour
         {
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movementForce.normalized), 0.2f);
         }
+
+        
+        var position = transform.position;
+        camera.transform.position = new Vector3(position.x, camera.transform.position.y, position.z - 50);
     }
     
     void OnCollisionEnter(Collision collision) 
