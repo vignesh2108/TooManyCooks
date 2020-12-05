@@ -22,7 +22,7 @@ public class PlayerMovement : NetworkBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        transform.position = new Vector3(transform.position.x, 8.5f, transform.position.z);
+        transform.position = new Vector3(transform.position.x, 13.5f, transform.position.z);
         rb = GetComponent<Rigidbody>();
         if (hasAuthority)
         {
