@@ -45,9 +45,9 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 122
   m_CollisionDetection: 0
@@ -58,12 +58,12 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6309392302185425174}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 4be84a2812d5449879598ec7c91b70a5, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 8.195098, y: 6.5655556, z: 7.7111692}
-  m_Center: {x: -0.18170595, y: 0.3882513, z: -0.23248148}
+  m_Size: {x: 4.651078, y: 4.5981045, z: 7.7111692}
+  m_Center: {x: 0.06446695, y: -0.59547424, z: -0.23248148}
 --- !u!114 &7594617564270065958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -95,6 +95,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   equippedItem: 0
+  rb: {fileID: -3330041491902798864}
   tomatoPrefab: {fileID: 8593450968425402722, guid: f36e2e50b9db847a8837db749491bcfd,
     type: 3}
   onionPrefab: {fileID: 2959900620647793795, guid: e6d7fd7d510324d0b900e4e7b473a672,

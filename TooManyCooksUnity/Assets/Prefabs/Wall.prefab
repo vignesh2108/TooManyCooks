@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7000226414157612976}
   - component: {fileID: 7000226414157612979}
   m_Layer: 0
-  m_Name: CounterTop
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -88,7 +88,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7000226414157612981}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 4be84a2812d5449879598ec7c91b70a5, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2

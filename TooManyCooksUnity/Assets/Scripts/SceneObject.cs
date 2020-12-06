@@ -10,6 +10,7 @@ public class SceneObject : NetworkBehaviour
     [SyncVar(hook = nameof(OnChangeEquipment))]
     public EquippedItem equippedItem;
 
+    public Rigidbody rb;
     public GameObject tomatoPrefab;
     public GameObject onionPrefab;
     
@@ -69,8 +70,11 @@ public class SceneObject : NetworkBehaviour
     {
        
         Debug.Log($"sel: {isSelected}");
-        transform.GetChild(0).gameObject.GetComponent<Outline>().enabled = isSelected;
-       
+        if (transform.childCount > 0)
+        {
+            transform.GetChild(0).gameObject.GetComponent<Outline>().enabled = isSelected;
+        }
+
     }
     
     
@@ -80,6 +84,10 @@ public class SceneObject : NetworkBehaviour
         {
             this.ToggleSelection(true);
         }
+        else
+        {
+            rb.isKinematic = true;
+        }
     }
     
     private void OnCollisionExit(Collision other)
@@ -88,7 +96,7 @@ public class SceneObject : NetworkBehaviour
         {
             this.ToggleSelection(false);
         }
-
-
+        
+        
     }
 }

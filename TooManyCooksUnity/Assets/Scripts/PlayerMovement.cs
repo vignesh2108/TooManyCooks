@@ -11,6 +11,9 @@ public class PlayerMovement : NetworkBehaviour
     private CameraScript camera;
     public Rigidbody rb;
     
+    [Header("References")]
+    [SerializeField] private Animator playerAnimator; 
+    
     
     // Environment
     private bool isMobile;
@@ -22,7 +25,7 @@ public class PlayerMovement : NetworkBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        transform.position = new Vector3(transform.position.x, 13.5f, transform.position.z);
+        transform.position = new Vector3(transform.position.x, 18f, transform.position.z);
         rb = GetComponent<Rigidbody>();
         if (hasAuthority)
         {
@@ -56,13 +59,27 @@ public class PlayerMovement : NetworkBehaviour
         if (movementForce != Vector3.zero)
         {
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movementForce.normalized), 0.2f);
+            
         }
-
+        
+        ClientAnimatePlayerWalkRPC(movementForce != Vector3.zero);
         
         var position = transform.position;
         camera.transform.position = new Vector3(position.x, camera.transform.position.y, position.z - 50);
     }
+
+    // [Command]
+    // void CallAnimatePlayerWalk(bool isWalking)
+    // {
+    //     ClientAnimatePlayerWalkRPC(isWalking);
+    // }
+
     
+    void ClientAnimatePlayerWalkRPC(bool isWalking)
+    {
+        playerAnimator.SetBool("isWalking", isWalking);
+    }
+
     void OnCollisionEnter(Collision collision) 
     {
         rb.velocity = Vector3.zero;
