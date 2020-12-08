@@ -43,14 +43,14 @@ public class ActionHandler : NetworkBehaviour {
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (Input.GetKeyDown(KeyCode.B))
         {
             Debug.Log("Trying to pickup.");
             GrabAction();
         }
 
         // To Change to suitable controls.
-        if (Input.GetKeyDown(KeyCode.X))
+        if (Input.GetKeyDown(KeyCode.V))
         {
             UseAction();;
         }
