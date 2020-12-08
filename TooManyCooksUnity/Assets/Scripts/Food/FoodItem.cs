@@ -70,7 +70,7 @@ public class FoodItem : NetworkBehaviour {
         {
             if (grabbedBy.GetComponent<ActionHandler>() != null)
             {
-                Transform hands = grabbedBy.GetComponent<PlayerMovement>().hands.transform;
+                Transform hands = grabbedBy.GetComponent<PlayerScript>().hands.transform;
                 transform.position = hands.position;
                 transform.rotation = hands.rotation;
 

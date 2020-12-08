@@ -76,7 +76,7 @@
      <Compile Include="Assets\Scripts\Player\ActionHandler.cs" />
      <Compile Include="Assets\Scripts\Player\ItemDetector.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerEquip.cs" />
-     <Compile Include="Assets\Scripts\Player\PlayerMovement.cs" />
+     <Compile Include="Assets\Scripts\Player\PlayerScript.cs" />
      <Compile Include="Assets\Scripts\Player\SyncPlayerMovement.cs" />
      <Compile Include="Assets\Scripts\Player\UseButton.cs" />
      <None Include="Assets\Shaders\Legacy\CelShader.shader" />
