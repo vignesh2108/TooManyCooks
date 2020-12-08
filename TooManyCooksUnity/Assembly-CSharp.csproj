@@ -63,6 +63,9 @@
      <Compile Include="Assets\Scripts\Containers\ItemDispenser.cs" />
      <Compile Include="Assets\Scripts\Containers\PlainCounter.cs" />
      <Compile Include="Assets\Scripts\Containers\SceneObject.cs" />
+     <Compile Include="Assets\Scripts\Dialog\Dialog.cs" />
+     <Compile Include="Assets\Scripts\Dialog\DialogManager.cs" />
+     <Compile Include="Assets\Scripts\Dialog\DialogTrigger.cs" />
      <Compile Include="Assets\Scripts\Food\FoodContainer.cs" />
      <Compile Include="Assets\Scripts\Food\FoodItem.cs" />
      <Compile Include="Assets\Scripts\Food\FryingPan.cs" />
@@ -77,6 +80,7 @@
      <Compile Include="Assets\Scripts\Player\SyncPlayerMovement.cs" />
      <Compile Include="Assets\Scripts\Player\UseButton.cs" />
      <None Include="Assets\Shaders\Legacy\CelShader.shader" />
+     <None Include="Assets\Fonts\Roboto\LICENSE.txt" />
      <None Include="Assets\Shaders\SupercyanShader.shader" />
      <None Include="Assets\Shaders\SupercyanShaderLighting.cginc" />
  <Reference Include="Unity.Timeline.Editor">
