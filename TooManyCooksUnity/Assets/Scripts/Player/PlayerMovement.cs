@@ -95,12 +95,12 @@ public class PlayerMovement : NetworkBehaviour
     private void OnTriggerEnter(Collider other)
     {
  
-        if (other.gameObject.GetComponentInParent<FoodItem>() == null)
+        if (other.gameObject.GetComponentInParent<FoodItem>() != null)
         {
             var f = other.gameObject.GetComponentInParent<FoodItem>();
-            Debug.Log("Food!");
+            Debug.Log("Food!:");
             
-
+            
             action.itemFocusOverride = f.gameObject;
             action.itemFocusOverride.GetComponent<Highlighter>().BrightenObject(true);
         }
@@ -108,18 +108,12 @@ public class PlayerMovement : NetworkBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.GetComponentInParent<FoodItem>() == null)
+        if (other.gameObject.GetComponentInParent<FoodItem>() != null)
         {
-            if (action.itemInFocus != null)
+            if (action.itemFocusOverride != null)
             {
-                action.itemInFocus.GetComponent<Highlighter>().BrightenObject(false);
-                action.itemInFocus = null;
-            }
-
-            if (action.counterInFocus != null)
-            {
-                action.counterInFocus.GetComponent<Highlighter>().BrightenObject(false);
-                action.counterInFocus = null;
+                action.itemFocusOverride.GetComponent<Highlighter>().BrightenObject(false);
+                action.itemFocusOverride = null;
             }
         }
     }

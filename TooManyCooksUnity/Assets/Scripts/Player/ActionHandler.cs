@@ -87,7 +87,13 @@ public class ActionHandler : NetworkBehaviour {
         {
 
             if (itemInFocus != null)
+            {
                 CmdGrabItem(itemInFocus, gameObject, counterInFocus);
+            }
+            else if (itemFocusOverride != null)
+            {
+                CmdGrabItem(itemFocusOverride, gameObject, counterInFocus);
+            }
 
         }
         else if (itemInHands != null)
