@@ -7,20 +7,36 @@ public class NetworkManagerScript : NetworkManager
 {
     public Transform[] spawnPoints;
     public GameObject sceneObjectPrefab;
+    public Color[] colors;
 
     public override void OnServerAddPlayer(NetworkConnection conn)
     {
         // add player at correct spawn position
         Transform start = spawnPoints[numPlayers];
         GameObject player = Instantiate(playerPrefab, start.position, start.rotation);
+        assignHatColor(player);
         NetworkServer.AddPlayerForConnection(conn, player);
 
         // spawn a tomato when the second player connects. 
         if (numPlayers == 2)
         {
            // Do something cool here.
-           SpawnTomato();
+           //SpawnTomato();
         }
+    }
+
+    void assignHatColor(GameObject player)
+    {
+        
+        foreach (Renderer r in player.GetComponentsInChildren<Renderer>())
+        {
+            if (r.gameObject.name == "hat")
+            {
+                r.material.color = colors[numPlayers];
+            }
+        }
+
+        
     }
 
     void SpawnTomato()

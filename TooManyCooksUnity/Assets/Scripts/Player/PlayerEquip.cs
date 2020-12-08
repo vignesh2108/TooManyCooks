@@ -10,7 +10,7 @@ public enum EquippedItem : byte
 {
     nothing, 
     tomato,
-    onion
+    dough
 }
 
 public class PlayerEquip : NetworkBehaviour
@@ -20,7 +20,7 @@ public class PlayerEquip : NetworkBehaviour
     public GameObject hand;
 
     public GameObject tomatoPrefab;
-    public GameObject onionPrefab;
+    public GameObject doughPrefab;
     
 
     [SyncVar(hook = nameof(OnChangeEquipment))]
@@ -47,8 +47,8 @@ public class PlayerEquip : NetworkBehaviour
 
         switch (newEquippedItem)
         {
-            case EquippedItem.onion:
-                Instantiate(onionPrefab, hand.transform);
+            case EquippedItem.dough:
+                Instantiate(doughPrefab, hand.transform);
                 break;
             case EquippedItem.tomato:
                 Instantiate(tomatoPrefab, hand.transform);
@@ -71,6 +71,7 @@ public class PlayerEquip : NetworkBehaviour
         {
             HandleButtonClick();
         }
+        
         
         // for testing purposes.
         if (Input.GetKeyDown(KeyCode.T) && equippedItem == EquippedItem.nothing)
@@ -138,22 +139,24 @@ public class PlayerEquip : NetworkBehaviour
     }
     
     
-    private void OnCollisionEnter(Collision other) // to see when the player enters the collider
+    private void OnTriggerEnter(Collider other) // to see when the player enters the collider
     {
         if (!isLocalPlayer) return;
         if(other.gameObject.CompareTag("Pickable")) //on the object you want to pick up set the tag to be anything, in this case "object"
         {
             canPickup = true;  //set the pick up bool to true
             pickupablePGameObject = other.gameObject;
+            pickupablePGameObject.GetComponent<SceneObject>().ToggleSelection(true);
             Debug.Log("Can Pickup!");
         }
     }
     
-    private void OnCollisionExit(Collision other)
+    private void OnTriggerExit(Collider other)
     {
         if (!isLocalPlayer) return;
         if (other.gameObject.CompareTag("Pickable"))
         {
+            pickupablePGameObject.GetComponent<SceneObject>().ToggleSelection(false);
             canPickup = false; //when you leave the collider set the canpickup bool to false
             Debug.Log("Can't Pickup!");
             pickupablePGameObject = null;

@@ -8,11 +8,13 @@ using UnityEngine.UI;
 public class PlayerMovement : NetworkBehaviour
 {
     private Joystick joystick;
-    private CameraScript camera;
+    private CameraScript cameraObject;
+    public GameObject hands;
     public Rigidbody rb;
     
+    public ActionHandler action;
     [Header("References")]
-    [SerializeField] private Animator playerAnimator; 
+    [SerializeField] public Animator playerAnimator; 
     
     
     // Environment
@@ -22,6 +24,11 @@ public class PlayerMovement : NetworkBehaviour
     private Vector3 movementForce;
     public float moveSpeed;
 
+    private void Awake()
+    {
+        action = GetComponentInParent<ActionHandler>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,7 +37,7 @@ public class PlayerMovement : NetworkBehaviour
         if (hasAuthority)
         {
             joystick = FloatingJoystick.S;
-            camera = CameraScript.S;
+            cameraObject = CameraScript.S;
         }
      
      
@@ -65,7 +72,7 @@ public class PlayerMovement : NetworkBehaviour
         ClientAnimatePlayerWalkRPC(movementForce != Vector3.zero);
         
         var position = transform.position;
-        camera.transform.position = new Vector3(position.x, camera.transform.position.y, position.z - 50);
+        cameraObject.transform.position = new Vector3(position.x, cameraObject.transform.position.y, position.z - 50);
     }
 
     // [Command]
@@ -83,5 +90,37 @@ public class PlayerMovement : NetworkBehaviour
     void OnCollisionEnter(Collision collision) 
     {
         rb.velocity = Vector3.zero;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+ 
+        if (other.gameObject.GetComponentInParent<FoodItem>() == null)
+        {
+            var f = other.gameObject.GetComponentInParent<FoodItem>();
+            Debug.Log("Food!");
+            
+
+            action.itemFocusOverride = f.gameObject;
+            action.itemFocusOverride.GetComponent<Highlighter>().BrightenObject(true);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.GetComponentInParent<FoodItem>() == null)
+        {
+            if (action.itemInFocus != null)
+            {
+                action.itemInFocus.GetComponent<Highlighter>().BrightenObject(false);
+                action.itemInFocus = null;
+            }
+
+            if (action.counterInFocus != null)
+            {
+                action.counterInFocus.GetComponent<Highlighter>().BrightenObject(false);
+                action.counterInFocus = null;
+            }
+        }
     }
 }

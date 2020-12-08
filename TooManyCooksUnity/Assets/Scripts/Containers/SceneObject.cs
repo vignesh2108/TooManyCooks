@@ -1,9 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Mirror;
 using UnityEngine;
 using UnityEngine.UI;
-using Outline = cakeslice.Outline;
 
 public class SceneObject : NetworkBehaviour
 {
@@ -12,7 +12,7 @@ public class SceneObject : NetworkBehaviour
 
     public Rigidbody rb;
     public GameObject tomatoPrefab;
-    public GameObject onionPrefab;
+    public GameObject doughPrefab;
     
     private bool canPickup;
     
@@ -44,8 +44,8 @@ public class SceneObject : NetworkBehaviour
             case EquippedItem.tomato:
                 Instantiate(tomatoPrefab, transform);
                 break;
-            case EquippedItem.onion:
-                Instantiate(onionPrefab, transform);
+            case EquippedItem.dough:
+                Instantiate(doughPrefab, transform);
                 break;
         }
     }
@@ -66,37 +66,18 @@ public class SceneObject : NetworkBehaviour
         }
     }
 
-    private void ToggleSelection(bool isSelected)
+    public void ToggleSelection(bool isSelected)
     {
        
         Debug.Log($"sel: {isSelected}");
-        if (transform.childCount > 0)
-        {
-            transform.GetChild(0).gameObject.GetComponent<Outline>().enabled = isSelected;
-        }
+        GetComponent<Highlighter>().BrightenObject(isSelected);
 
     }
-    
-    
-    private void OnCollisionEnter(Collision other) // to see when the player enters the collider
+
+    private void OnCollisionEnter(Collision other)
     {
-        if(other.gameObject.CompareTag("Player")) //on the object you want to pick up set the tag to be anything, in this case "object"
-        {
-            this.ToggleSelection(true);
-        }
-        else
-        {
-            rb.isKinematic = true;
-        }
+        rb.isKinematic = true;
     }
-    
-    private void OnCollisionExit(Collision other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            this.ToggleSelection(false);
-        }
-        
-        
-    }
+
+  
 }

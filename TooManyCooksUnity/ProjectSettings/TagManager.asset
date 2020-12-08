@@ -5,6 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - Pickable
+  - Fluid
+  - CounterTop
+  - NetworkManager
+  - FoodContainer
+  - FoodItem
+  - CookerItem
   layers:
   - Default
   - TransparentFX
@@ -14,11 +20,11 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Floor
+  - Player
+  - HitFloorOnly
+  - Counter
+  - PlayerTrigger
   - 
   - 
   - 

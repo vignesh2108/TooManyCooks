@@ -618,7 +618,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2040565857251118032}
   - component: {fileID: 5802402082275335442}
-  m_Layer: 0
+  - component: {fileID: 8786042137786331036}
+  m_Layer: 12
   m_Name: PlayerBody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -660,6 +661,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!136 &8786042137786331036
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2037110638017468966}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.1686093
+  m_Height: 1.05668
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1 &2037114853332324626
 GameObject:
   m_ObjectHideFlags: 0
@@ -1355,14 +1370,16 @@ GameObject:
   - component: {fileID: 7699222281150844819}
   - component: {fileID: 7699222281150844844}
   - component: {fileID: 7699222281150844816}
-  - component: {fileID: 7699222281150844817}
-  - component: {fileID: 4632868177030845090}
+  - component: {fileID: 6846878203356670021}
   - component: {fileID: 3035023248291628478}
+  - component: {fileID: 4965999479624382029}
+  - component: {fileID: 5825443904484219135}
   - component: {fileID: 7348742856996626888}
   - component: {fileID: 6838347652114368595}
-  m_Layer: 0
+  - component: {fileID: 653574903377859729}
+  m_Layer: 9
   m_Name: Player
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1390,7 +1407,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7699222281150844847}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 4be84a2812d5449879598ec7c91b70a5, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.16860926
@@ -1413,39 +1430,29 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 2
---- !u!114 &7699222281150844817
+--- !u!114 &6846878203356670021
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7699222281150844847}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76a9b51dc063348ad9421330f47a0458, type: 3}
+  m_Script: {fileID: 11500000, guid: a989fbcbfcb2cc54491c3603e2372998, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  rb: {fileID: 7699222281150844816}
-  playerAnimator: {fileID: 5802402082275335442}
-  moveSpeed: 55
---- !u!114 &4632868177030845090
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7699222281150844847}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneId: 0
-  serverOnly: 0
-  m_AssetId: 
-  hasSpawned: 0
+  sceneObjectPrefab: {fileID: 6309392302185425174, guid: 3fb3a83bed677486593a9656e5b093fb,
+    type: 3}
+  hand: {fileID: 8387587211826364066}
+  tomatoPrefab: {fileID: 2757923359195229166, guid: 3b6003e47e4135d488b782e2ebe2320a,
+    type: 3}
+  doughPrefab: {fileID: 363186925671328557, guid: d922497fe14d84d498edbbb177ce3a96,
+    type: 3}
+  equippedItem: 0
+  canPickup: 0
 --- !u!114 &3035023248291628478
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1455,14 +1462,54 @@ MonoBehaviour:
   m_GameObject: {fileID: 7699222281150844847}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb19933aa18e343928ba0ad39b0f69b5, type: 3}
+  m_Script: {fileID: 11500000, guid: e20fed1d9cd944943b08edcebdd05088, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0
-  syncInterval: 0.09
-  lerpRate: 10
-  posThreshold: 0.5
-  rotThreshold: 5
+  syncInterval: 0.1
+  hands: {fileID: 8387587211826364066}
+  rb: {fileID: 7699222281150844816}
+  action: {fileID: 0}
+  playerAnimator: {fileID: 5802402082275335442}
+  moveSpeed: 60
+--- !u!114 &4965999479624382029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7699222281150844847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 392c39eea24968548950059c46f6fab8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  action: {fileID: 5825443904484219135}
+  layer:
+    serializedVersion: 2
+    m_Bits: 0
+--- !u!114 &5825443904484219135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7699222281150844847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 352f3a60237232847a67605847ab6640, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  itemInFocus: {fileID: 0}
+  counterInFocus: {fileID: 0}
+  netID: {fileID: 0}
+  continuousAction: 0
+  controlEnabled: 1
+  itemInHandsName: 
+  itemInHands: {fileID: 0}
+  init: 0
 --- !u!114 &7348742856996626888
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1472,20 +1519,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 7699222281150844847}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6adb05eee204e4fea83d596e8b190bac, type: 3}
+  m_Script: {fileID: 11500000, guid: ddb63a61d18b1dd43b1b6f9f48a9d1b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  sceneObjectPrefab: {fileID: 6309392302185425174, guid: 3fb3a83bed677486593a9656e5b093fb,
-    type: 3}
-  hand: {fileID: 8387587211826364066}
-  tomatoPrefab: {fileID: 8593450968425402722, guid: f36e2e50b9db847a8837db749491bcfd,
-    type: 3}
-  onionPrefab: {fileID: 2959900620647793795, guid: e6d7fd7d510324d0b900e4e7b473a672,
-    type: 3}
-  equippedItem: 0
-  canPickup: 0
+  lerpRate: 10
+  posThreshold: 0.5
+  rotThreshold: 5
 --- !u!114 &6838347652114368595
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1502,6 +1543,22 @@ MonoBehaviour:
   syncInterval: 0.1
   clientAuthority: 1
   animator: {fileID: 5802402082275335442}
+--- !u!114 &653574903377859729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7699222281150844847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 0
+  serverOnly: 0
+  m_AssetId: 
+  hasSpawned: 0
 --- !u!1 &8387587211826364066
 GameObject:
   m_ObjectHideFlags: 0
@@ -1526,7 +1583,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8387587211826364066}
   m_LocalRotation: {x: -0, y: -0.7551504, z: -0, w: -0.6555517}
-  m_LocalPosition: {x: 0.004, y: -0.169, z: 0.157}
+  m_LocalPosition: {x: 0.016, y: -0.169, z: 0.243}
   m_LocalScale: {x: 0.033333328, y: 0.033333335, z: 0.033333328}
   m_Children: []
   m_Father: {fileID: 7699222281150844819}
