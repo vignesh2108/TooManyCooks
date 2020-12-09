@@ -3446,9 +3446,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0
-  syncInterval: 0.1
+  syncInterval: 0.5
   itemName: 
-  cookable: 0
+  cookable: 1
   choppable: 0
   useable: 0
   continuousUse: 0

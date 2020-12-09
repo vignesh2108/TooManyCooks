@@ -130,10 +130,10 @@ public class OvenCounter : CounterItem
             // Code here to complete cooking
             cookProgress = 0;
 
-            itemOnCounter.GetComponent<FoodItem>().cookable = false;
+            //itemOnCounter.GetComponent<FoodItem>().cookable = false;
             var newItem = Instantiate(itemOnCounter.GetComponent<FoodItem>().cooksTo);
             var oldItem = itemOnCounter;
-            newItem.GetComponent<FoodItem>().cookable = false;
+            //newItem.GetComponent<FoodItem>().cookable = false;
             newItem.transform.position = oldItem.transform.position;
 
             NetworkServer.Destroy(itemOnCounter);

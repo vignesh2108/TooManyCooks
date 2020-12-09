@@ -190,7 +190,7 @@ GameObject:
   - component: {fileID: 9143916590340899674}
   - component: {fileID: 3296034023095309320}
   m_Layer: 0
-  m_Name: TomatoPrefab 1
+  m_Name: TomatoPrefab
   m_TagString: FoodItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
