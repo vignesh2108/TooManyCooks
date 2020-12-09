@@ -134,7 +134,7 @@ public class OvenCounter : CounterItem
             var newItem = Instantiate(itemOnCounter.GetComponent<FoodItem>().cooksTo);
             var oldItem = itemOnCounter;
             newItem.GetComponent<FoodItem>().cookable = false;
-            newItem.transform.position = transform.position + placePos;
+            newItem.transform.position = oldItem.transform.position;
 
             NetworkServer.Destroy(itemOnCounter);
             NetworkServer.Spawn(newItem);

@@ -40,21 +40,23 @@ public class ActionHandler : NetworkBehaviour {
 
         if (itemInHandsName != "")
             StartCoroutine(initialize());
-        
-        UseButton.S.GetComponent<Button>().onClick.AddListener(UseAction);
-        GrabButton.S.GetComponent<Button>().onClick.AddListener(GrabAction);
 
-        EventTrigger useButtonHoldTrigger = UseButton.S.gameObject.AddComponent<EventTrigger>();
-        var pointerDown = new EventTrigger.Entry();
-        pointerDown.eventID = EventTriggerType.PointerDown;
-        pointerDown.callback.AddListener(UseButtonDownHandler);
-        useButtonHoldTrigger.triggers.Add(pointerDown);
-        
-        var pointerUp = new EventTrigger.Entry();
-        pointerUp.eventID = EventTriggerType.PointerUp;
-        pointerUp.callback.AddListener(UseButtonUpHandler);
-        useButtonHoldTrigger.triggers.Add(pointerUp);
-        
+        if (isLocalPlayer)
+        {
+            UseButton.S.GetComponent<Button>().onClick.AddListener(UseAction);
+            GrabButton.S.GetComponent<Button>().onClick.AddListener(GrabAction);
+
+            EventTrigger useButtonHoldTrigger = UseButton.S.gameObject.AddComponent<EventTrigger>();
+            var pointerDown = new EventTrigger.Entry();
+            pointerDown.eventID = EventTriggerType.PointerDown;
+            pointerDown.callback.AddListener(UseButtonDownHandler);
+            useButtonHoldTrigger.triggers.Add(pointerDown);
+
+            var pointerUp = new EventTrigger.Entry();
+            pointerUp.eventID = EventTriggerType.PointerUp;
+            pointerUp.callback.AddListener(UseButtonUpHandler);
+            useButtonHoldTrigger.triggers.Add(pointerUp);
+        }
 
     }
 
@@ -77,6 +79,8 @@ public class ActionHandler : NetworkBehaviour {
 
     private void Update()
     {
+        if (!isLocalPlayer) return;
+        
         if (Input.GetKeyDown(KeyCode.G))
         {
             Debug.Log("Trying to pickup.");
@@ -178,7 +182,8 @@ public class ActionHandler : NetworkBehaviour {
     [Command]
     void CmdGrabItem(GameObject foodItem, GameObject player, GameObject counterFocus)
     {
-
+        if (foodItem == null || foodItem.GetComponent<FoodItem>() == null) return;
+        
         var f = foodItem.GetComponent<FoodItem>();
 
         if (counterFocus != null && f.grabbedBy == counterFocus)
