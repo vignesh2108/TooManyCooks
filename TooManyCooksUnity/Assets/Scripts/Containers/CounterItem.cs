@@ -28,7 +28,7 @@ public class CounterItem : NetworkBehaviour {
     public virtual void Start()
     {
         gameObject.name = gameObject.name + GetComponent<NetworkIdentity>().netId;
-        placePos = transform.position;
+        placePos = transform.position + placePos;
 
         if (itemOnCounterName != "")
         {

@@ -36,7 +36,7 @@ public class ItemDetector : MonoBehaviour {
         if (Physics.Raycast(origin, direction, out floorHit, distance, layer))
         {
            
-            Debug.Log("hit: " + floorHit.collider.gameObject.name);
+            //Debug.Log("hit: " + floorHit.collider.gameObject.name);
             if (floorHit.collider.gameObject.GetComponent<FoodItem>() != null)
             {
 
@@ -44,7 +44,7 @@ public class ItemDetector : MonoBehaviour {
                     action.itemInFocus.GetComponent<Highlighter>().BrightenObject(false);
 
                 var f = floorHit.collider.gameObject.GetComponent<FoodItem>();
-                Debug.Log("Food!");
+                //Debug.Log("Food!");
                 action.continuousAction = f.continuousUse;
 
                 action.itemInFocus = f.gameObject;
@@ -54,7 +54,7 @@ public class ItemDetector : MonoBehaviour {
             }
             else if (floorHit.collider.gameObject.GetComponent<CounterItem>() != null)
             {
-                Debug.Log("Counter!");
+                //Debug.Log("Counter!");
                 var c = floorHit.collider.gameObject.GetComponent<CounterItem>();
 
                 if (action.counterInFocus != null)

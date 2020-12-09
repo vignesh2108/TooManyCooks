@@ -3,7 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class ActionHandler : NetworkBehaviour {
 
@@ -15,6 +17,7 @@ public class ActionHandler : NetworkBehaviour {
     public NetworkIdentity netID;
 
     public bool continuousAction = false;
+    public bool useButtonHeld = false;
     public bool controlEnabled = true;
 
     [SyncVar]
@@ -26,6 +29,7 @@ public class ActionHandler : NetworkBehaviour {
 
     Vector3 velocity;
     Vector3 oneFrameAgo;
+    
 
     // INIT
     private void Start()
@@ -37,22 +41,68 @@ public class ActionHandler : NetworkBehaviour {
         if (itemInHandsName != "")
             StartCoroutine(initialize());
         
-        UseButton.S.GetComponent<Button>().onClick.AddListener(GrabAction);
+        UseButton.S.GetComponent<Button>().onClick.AddListener(UseAction);
+        GrabButton.S.GetComponent<Button>().onClick.AddListener(GrabAction);
+
+        EventTrigger useButtonHoldTrigger = UseButton.S.gameObject.AddComponent<EventTrigger>();
+        var pointerDown = new EventTrigger.Entry();
+        pointerDown.eventID = EventTriggerType.PointerDown;
+        pointerDown.callback.AddListener(UseButtonDownHandler);
+        useButtonHoldTrigger.triggers.Add(pointerDown);
+        
+        var pointerUp = new EventTrigger.Entry();
+        pointerUp.eventID = EventTriggerType.PointerUp;
+        pointerUp.callback.AddListener(UseButtonUpHandler);
+        useButtonHoldTrigger.triggers.Add(pointerUp);
+        
 
     }
 
+    public void UseButtonDownHandler(BaseEventData e)
+    {
+       
+        Debug.Log("Use Held!" + Random.Range(0, 10));
+        useButtonHeld = true;
+
+    }
+    
+    public void UseButtonUpHandler(BaseEventData e)
+    {
+        Debug.Log("Use Left!" + Random.Range(0, 10));
+        useButtonHeld = false;
+       
+    }
+    
+    
+
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.B))
+        if (Input.GetKeyDown(KeyCode.G))
         {
             Debug.Log("Trying to pickup.");
             GrabAction();
         }
 
         // To Change to suitable controls.
-        if (Input.GetKeyDown(KeyCode.V))
+        if (Input.GetKeyDown(KeyCode.U))
         {
-            UseAction();;
+            UseAction();
+        }
+        
+        // Check to see if we should do single action or perform continuous action
+        if (continuousAction)
+        {
+            if (Input.GetKey(KeyCode.U) || useButtonHeld)
+            {
+                UseAction();
+            }
+        }
+        else
+        {
+            if (Input.GetKeyDown(KeyCode.U))
+            {
+                UseAction();
+            }
         }
     }
 
@@ -83,6 +133,8 @@ public class ActionHandler : NetworkBehaviour {
     public void GrabAction()
     {
         
+        if (!controlEnabled) return;
+        
         if (itemInHands == null)
         {
 
@@ -105,6 +157,7 @@ public class ActionHandler : NetworkBehaviour {
 
     public void UseAction()
     {
+        if (!controlEnabled) return;
 
         if (itemInHands != null)
             if (itemInHands.GetComponent<FoodItem>().useable)
@@ -130,6 +183,10 @@ public class ActionHandler : NetworkBehaviour {
 
         if (counterFocus != null && f.grabbedBy == counterFocus)
         {
+            if (counterFocus.GetComponent<OvenCounter>() != null)
+            {
+                counterFocus.GetComponent<NetworkIdentity>().RemoveClientAuthority();
+            }
             counterFocus.GetComponent<CounterItem>().itemOnCounterName = "";
             counterFocus.GetComponent<CounterItem>().RpcClearCounter();
         }
@@ -213,6 +270,10 @@ public class ActionHandler : NetworkBehaviour {
                 c.itemOnCounterName = itemInHands.name;
                 itemInHandsName = "";
                 //f.RpcClearGrabbed(Vector3.zero);
+                if (counterFocus.GetComponent<OvenCounter>() != null)
+                {
+                    counterFocus.GetComponent<NetworkIdentity>().AssignClientAuthority(connectionToClient);
+                }
 
                 c.PlaceItem(foodItem);
                 RpcClearHands();

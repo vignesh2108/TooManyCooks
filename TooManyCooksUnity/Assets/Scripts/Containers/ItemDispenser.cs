@@ -22,7 +22,7 @@ public class ItemDispenser : CounterItem {
             NetworkServer.Spawn(obj);
 
             //Set its position
-            obj.transform.position = transform.position + new Vector3(0, 0.1f, 0);
+            obj.transform.position = transform.position + new Vector3(0, 1f, 0);
 
             // Set its name to the proper format. (Food Item Name + NET ID VALUE)
             obj.name = obj.GetComponent<FoodItem>().itemName + obj.GetComponent<NetworkIdentity>().netId;

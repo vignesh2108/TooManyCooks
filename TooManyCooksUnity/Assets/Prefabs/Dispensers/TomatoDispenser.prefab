@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7615099218476625373}
   - component: {fileID: 7615099218476625374}
   m_Layer: 0
-  m_Name: TomatoDispenser 1
+  m_Name: TomatoDispenser
   m_TagString: CounterTop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -157,8 +157,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5aca6693610276c4190f5740d1183bcc, type: 2}
-  - {fileID: 2100000, guid: 72b60f1b3e5a4b94f88154af53968158, type: 2}
+  - {fileID: 2100000, guid: 974e4860cba7dbd478b90327dbc32482, type: 2}
+  - {fileID: 2100000, guid: c7d4d55229668c54c9ce656beb9a14a1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
