@@ -162,8 +162,9 @@ public class OvenCounter : CounterItem
             //itemOnCounter.GetComponent<FoodItem>().cookable = false;
             var newItem = Instantiate(itemOnCounter.GetComponent<FoodItem>().cooksTo);
             var oldItem = itemOnCounter;
-            //newItem.GetComponent<FoodItem>().cookable = false;
+            newItem.GetComponent<FoodItem>().poisoned = oldItem.GetComponent<FoodItem>().poisoned;
             newItem.transform.position = oldItem.transform.position;
+            
 
             NetworkServer.Destroy(itemOnCounter);
             NetworkServer.Spawn(newItem);

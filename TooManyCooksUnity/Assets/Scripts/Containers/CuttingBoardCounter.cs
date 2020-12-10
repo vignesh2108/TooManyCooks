@@ -71,7 +71,9 @@ public class CuttingBoardCounter : CounterItem {
 
         if (cutProgress >= 10f)
         {
-            var obj = Instantiate(itemOnCounter.GetComponent<FoodItem>().chopsTo);
+            GameObject newItem = itemOnCounter.GetComponent<FoodItem>().chopsTo;
+            newItem.GetComponent<FoodItem>().poisoned = itemOnCounter.GetComponent<FoodItem>().poisoned;
+            var obj = Instantiate(newItem);
 
             NetworkServer.Spawn(obj);
             NetworkServer.Destroy(itemOnCounter);

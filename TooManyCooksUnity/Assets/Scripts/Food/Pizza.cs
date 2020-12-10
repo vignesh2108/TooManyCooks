@@ -22,11 +22,12 @@ public class Pizza : FoodContainer {
     {
         base.Start();
 
+        cookable = false;
         if (sauce || cheese)
-            InitBurger();
+            InitPizza();
     }
 
-    void InitBurger()
+    void InitPizza()
     {
         if (sauce)
         {
@@ -41,7 +42,7 @@ public class Pizza : FoodContainer {
             inContainer.Add("Sliced Cheese");
         }
 
-        UpdateBurger();
+        UpdatePizza();
 
     }
 
@@ -70,9 +71,16 @@ public class Pizza : FoodContainer {
     {
 
         //Debug.Log("CMD ON CLIENT ERROR: SOURCE IS :" + name);
-
-        var fname = foodItem.GetComponent<FoodItem>().itemName;
-
+        FoodItem f = foodItem.GetComponent<FoodItem>();
+        var fname = f.customName;
+        GameObject smokeEffect = null;
+        if (f.poisoned)
+        {   
+            smokeEffect = Instantiate(GameManager.S.SmokePrefab);
+            poisoned = true;
+            smokeEffect.transform.position = transform.position;
+           
+        }
         switch (fname)
         {
             case "Sliced Tomato":
@@ -89,8 +97,22 @@ public class Pizza : FoodContainer {
         inContainer.Add(fname);
 
         RpcUpdateFood(fname);
-        NetworkServer.Destroy(foodItem);
+        
+        if (smokeEffect != null)
+        {
+            NetworkServer.Spawn(smokeEffect);
+        }
 
+        NetworkServer.Destroy(foodItem);
+    
+        if (cheese && sauce)
+        {
+            cookable = true;
+        }
+        else
+        {
+            cookable = false;
+        }
         
     }
 
@@ -111,11 +133,11 @@ public class Pizza : FoodContainer {
                 break;
         }
 
-        UpdateBurger();
+        UpdatePizza();
 
     }
 
-    void UpdateBurger()
+    void UpdatePizza()
     {
 
         if (cheese && sauce)

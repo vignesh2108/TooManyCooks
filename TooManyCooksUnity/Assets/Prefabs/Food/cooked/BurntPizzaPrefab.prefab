@@ -241,10 +241,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  itemName: Cooked  Pizza
+  itemName: Burnt  Pizza
   cookable: 0
   choppable: 0
+  customName: 
   burnt: 1
+  poisoned: 0
   useable: 0
   continuousUse: 0
   dropOverride: 0

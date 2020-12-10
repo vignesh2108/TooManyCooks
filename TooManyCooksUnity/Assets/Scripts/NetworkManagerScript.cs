@@ -16,7 +16,7 @@ public struct CreateCharacterMessage : NetworkMessage
 public class NetworkManagerScript : NetworkManager
 {
     public Transform[] spawnPoints;
-    public GameObject sceneObjectPrefab;
+    
     private GameObject[] players = new GameObject[4];
     public Color[] colors;
     public int minPlayers;
@@ -55,6 +55,7 @@ public class NetworkManagerScript : NetworkManager
             conn.Disconnect();
             return;
         }
+        
         Debug.Log("Player connected!");
         // add player at correct spawn position
         Transform start = spawnPoints[numPlayers];
@@ -62,7 +63,14 @@ public class NetworkManagerScript : NetworkManager
         players[numPlayers] = playerObj;
         NetworkServer.AddPlayerForConnection(conn, playerObj);
         Debug.Log("Player connected!");
-        
+
+        if (numPlayers == 0)
+        {
+            foreach (OvenCounter o in FindObjectsOfType<OvenCounter>())
+            {
+                o.GetComponent<NetworkIdentity>().AssignClientAuthority(conn);
+            }
+        }
         //Choose an imposter when enough players connect. 
         
         if (numPlayers >= minPlayers)

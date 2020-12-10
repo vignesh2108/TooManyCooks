@@ -6,7 +6,9 @@ public class ItemDispenser : CounterItem {
 
     public GameObject itemToDispense;
 
-    bool waitTrigger = false;
+    public bool isPoisonDispenser;
+    
+    public bool waitTrigger = false;
 
     public override void UseCounter(GameObject player, bool cont, float deltaTime)
     {
@@ -40,7 +42,7 @@ public class ItemDispenser : CounterItem {
     }
     
     // Cooldown script
-    IEnumerator WaitTrigger()
+    public IEnumerator WaitTrigger()
     {
 
         waitTrigger = true;
@@ -50,7 +52,7 @@ public class ItemDispenser : CounterItem {
     }
 
     [ClientRpc]
-    void RpcDispenserCallback(GameObject player, GameObject newFood)
+    public void RpcDispenserCallback(GameObject player, GameObject newFood)
     {
         player.GetComponent<ActionHandler>().itemInFocus = newFood;
     }

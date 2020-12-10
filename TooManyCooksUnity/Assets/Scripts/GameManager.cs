@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public class GameManager : NetworkBehaviour
 {
     public static GameManager S;
-    public GameObject sceneObjectPrefab;
+    public GameObject SmokePrefab;
     public bool isMobile;
     public Dialog dialog;
 
@@ -81,8 +81,8 @@ public class GameManager : NetworkBehaviour
         switch (dialogType)
         {
             case "default":
-                dialogString = $"Thank you!\n" +
-                               $"Pizzas served: {dishesServed}\n";
+                dialogString = $"Great Pizza!\n" +
+                               $"They loved it!\n";
                 showDialogHelper(dialogString);
                 break;
             case "burnt":
@@ -97,19 +97,19 @@ public class GameManager : NetworkBehaviour
                 showDialogHelper(dialogString);
                 break;
             case "poisonedServed":
-                dialogString = $"Poisoned Pizza!\n" +
-                               $"Guests poisoned: {guestsPoisoned}\n";
+                dialogString = $"OMG! Poison!\n" +
+                               $"Imposter Alert!\n";
                 VoteButton.S.gameObject.SetActive(true);
                 showDialogHelper(dialogString);
                 break;
             case "chefWin":
                 dialogString = $"The Chefs Win!\n" +
-                               $"Pizzas served: {dishesServed}\n";
+                               $"All guests served!\n";
                 showDialogHelper(dialogString);
                 break;
             case "imposterWin":
                 dialogString = $"The Imposter Wins!\n" +
-                               $"Guests poisoned: {guestsPoisoned}\n";
+                               $"Guests poisoned: {maxGuestsPoisoned}\n";
                 showDialogHelper(dialogString);
                 break;
         }

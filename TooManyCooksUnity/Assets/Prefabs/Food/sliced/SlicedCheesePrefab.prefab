@@ -146,6 +146,9 @@ MonoBehaviour:
   itemName: Sliced Cheese
   cookable: 0
   choppable: 0
+  customName: Sliced Cheese
+  burnt: 0
+  poisoned: 0
   useable: 0
   continuousUse: 0
   dropOverride: 0

@@ -7,10 +7,18 @@ using Mirror;
 public class FoodItem : NetworkBehaviour {
 
     public string itemName;
-    public bool cookable;
+    
     public bool choppable;
-    public bool burnt;
+    
     public string customName;
+    
+    [SyncVar]
+    public bool cookable;
+    
+    [SyncVar]
+    public bool burnt;
+    
+    [SyncVar]
     public bool poisoned;
 
     // For things like fire extinguishers and GUNS! :) 

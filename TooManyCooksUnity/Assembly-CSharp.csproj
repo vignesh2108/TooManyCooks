@@ -62,6 +62,7 @@
      <Compile Include="Assets\Scripts\Containers\ItemDispenser.cs" />
      <Compile Include="Assets\Scripts\Containers\OvenCounter.cs" />
      <Compile Include="Assets\Scripts\Containers\PlainCounter.cs" />
+     <Compile Include="Assets\Scripts\Containers\PoisonItemDispenser.cs" />
      <Compile Include="Assets\Scripts\Containers\SceneObject.cs" />
      <Compile Include="Assets\Scripts\Containers\ServingCounter.cs" />
      <Compile Include="Assets\Scripts\Dialog\Dialog.cs" />
@@ -70,7 +71,7 @@
      <Compile Include="Assets\Scripts\Food\FoodContainer.cs" />
      <Compile Include="Assets\Scripts\Food\FoodItem.cs" />
      <Compile Include="Assets\Scripts\Food\FryingPan.cs" />
-     <Compile Include="Assets\Scripts\Food\Pizza1.cs" />
+     <Compile Include="Assets\Scripts\Food\Pizza.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\Misc\CameraScript.cs" />
      <Compile Include="Assets\Scripts\Misc\FaceCamera.cs" />

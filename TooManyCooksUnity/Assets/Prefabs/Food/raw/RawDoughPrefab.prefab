@@ -99,6 +99,9 @@ MonoBehaviour:
   itemName: Raw Dough
   cookable: 0
   choppable: 1
+  customName: Raw Dough
+  burnt: 0
+  poisoned: 0
   useable: 0
   continuousUse: 0
   dropOverride: 0
