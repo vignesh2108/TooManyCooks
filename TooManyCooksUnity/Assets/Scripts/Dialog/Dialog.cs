@@ -7,5 +7,5 @@ public class Dialog
 {
     // Start is called before the first frame update
     public string name;
-    public string[] sentences;
+    public List<string> sentences;
 }

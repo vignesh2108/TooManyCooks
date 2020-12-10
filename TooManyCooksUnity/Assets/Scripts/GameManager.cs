@@ -1,15 +1,29 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Mirror;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class GameManager : MonoBehaviour
+public class GameManager : NetworkBehaviour
 {
     public static GameManager S;
     public GameObject sceneObjectPrefab;
     public bool isMobile;
     public Dialog dialog;
+
+    [SyncVar]
+    public int dishesServed = 0;
+    
+    [SyncVar]
+    public int guestsPoisoned = 0;
+
+    public int maxDishes = 10;
+    public int maxGuestsPoisoned = 5;
+    public GameObject statsButton;
+    public DialogManager dialogManager;
+    
     private void Awake()
     {
         if (S == null)
@@ -24,15 +38,96 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        WaiterButton.S.GetComponent<Button>().onClick.AddListener(ShowGameStats);
+    }
+
+    public string checkGameWinCondition()
+    {
+        if (dishesServed >= maxDishes)
+        {
+            return "chef";
+        } 
         
+        if (guestsPoisoned >= maxGuestsPoisoned)
+        {
+            return "imposter";
+        }
+
+        return "none";
+    }
+
+    public void ShowGameStats()
+    {
+        string statsString = $"Pizzas served: {dishesServed}\n" +
+                             $"Guests poisoned: {guestsPoisoned}\n";
+        
+        showDialogHelper(statsString);
+        
+    }
+
+    public void showDialogHelper(string dialogString)
+    {
+        WaiterButton.S.gameObject.SetActive(false);
+        dialog.name = "Waiter";
+        dialog.sentences.Clear();
+        dialog.sentences.Add(dialogString);
+        dialogManager.StartDialog(dialog);
+    }
+    
+    
+    public void ShowDialog(string dialogType)
+    {
+        string dialogString = "";
+        switch (dialogType)
+        {
+            case "default":
+                dialogString = $"Thank you!\n" +
+                               $"Pizzas served: {dishesServed}\n";
+                showDialogHelper(dialogString);
+                break;
+            case "burnt":
+                dialogString = $"Eww! Burnt Food!\n" +
+                               $"We can't serve this!";
+                showDialogHelper(dialogString);
+                break;
+            
+            case "invalid":
+                dialogString = $"Eww! This is raw!\n" +
+                               $"We can't serve this!";
+                showDialogHelper(dialogString);
+                break;
+            case "poisonedServed":
+                dialogString = $"Poisoned Pizza!\n" +
+                               $"Guests poisoned: {guestsPoisoned}\n";
+                VoteButton.S.gameObject.SetActive(true);
+                showDialogHelper(dialogString);
+                break;
+            case "chefWin":
+                dialogString = $"The Chefs Win!\n" +
+                               $"Pizzas served: {dishesServed}\n";
+                showDialogHelper(dialogString);
+                break;
+            case "imposterWin":
+                dialogString = $"The Imposter Wins!\n" +
+                               $"Guests poisoned: {guestsPoisoned}\n";
+                showDialogHelper(dialogString);
+                break;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
-            FindObjectOfType<DialogManager>().StartDialog(dialog);
+            if (!dialogManager.isOpen)
+            {
+                ShowGameStats();
+            }
+            else
+            {
+                dialogManager.EndDialog();
+            }
         }
     }
 }

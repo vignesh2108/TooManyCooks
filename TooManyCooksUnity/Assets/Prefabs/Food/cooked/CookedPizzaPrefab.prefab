@@ -157,9 +157,9 @@ GameObject:
   - component: {fileID: 6618878191534754915}
   - component: {fileID: 3051181725183491040}
   - component: {fileID: 8555284309803749920}
-  - component: {fileID: 7772614201298390863}
   - component: {fileID: 3700977257229907565}
   - component: {fileID: 4508286321118310389}
+  - component: {fileID: 1062320703881099558}
   m_Layer: 0
   m_Name: CookedPizzaPrefab
   m_TagString: FoodItem
@@ -227,32 +227,6 @@ MonoBehaviour:
   serverOnly: 0
   m_AssetId: 
   hasSpawned: 0
---- !u!114 &7772614201298390863
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1757090416647044233}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1bffd5d8336d134a98419cb8bf86e82, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
-  itemName: Cooked  Pizza
-  cookable: 1
-  choppable: 0
-  useable: 0
-  continuousUse: 0
-  dropOverride: 0
-  cooksTo: {fileID: 1757090416647044233, guid: 18f87ad077a23ba4c81b77ca8b30e7ae, type: 3}
-  chopsTo: {fileID: 0}
-  grabbedByName: 
-  grabbedBy: {fileID: 0}
-  netID: {fileID: 0}
-  highlighter: {fileID: 0}
 --- !u!114 &3700977257229907565
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -284,6 +258,35 @@ MonoBehaviour:
   localPositionSensitivity: 0.01
   localRotationSensitivity: 0.01
   localScaleSensitivity: 0.01
+--- !u!114 &1062320703881099558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1757090416647044233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 324d28585471f84428d197a0aec426e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  itemName: Cooked  Pizza
+  cookable: 1
+  choppable: 0
+  burnt: 0
+  customName: CookedPizza
+  poisoned: 0
+  useable: 0
+  continuousUse: 0
+  dropOverride: 0
+  cooksTo: {fileID: 1757090416647044233, guid: 18f87ad077a23ba4c81b77ca8b30e7ae, type: 3}
+  chopsTo: {fileID: 0}
+  grabbedByName: 
+  grabbedBy: {fileID: 0}
+  netID: {fileID: 0}
+  highlighter: {fileID: 0}
 --- !u!1 &3689352738505161151
 GameObject:
   m_ObjectHideFlags: 0

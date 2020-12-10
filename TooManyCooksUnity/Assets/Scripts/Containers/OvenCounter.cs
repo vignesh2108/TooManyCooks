@@ -80,13 +80,14 @@ public class OvenCounter : CounterItem
     
     private void Update()
     {
-        if (checkCook && netID.hasAuthority)
+        checkCook = CheckCookable(itemOnCounter);
+        if (checkCook)
         {
             CmdCookItem();
            
         }
         SmoothVal();
-        checkCook = CheckCookable(itemOnCounter);
+        
     }
 
 

@@ -88,7 +88,7 @@ public class ActionHandler : NetworkBehaviour {
         }
 
         // To Change to suitable controls.
-        if (Input.GetKeyDown(KeyCode.U))
+        if (Input.GetKeyDown(KeyCode.R))
         {
             UseAction();
         }
@@ -277,7 +277,7 @@ public class ActionHandler : NetworkBehaviour {
                 if (c.isOven)
                 {
                     Debug.Log("Trying to place item in oven!");
-                    Debug.Log("Player auth:" + c.GetComponent<NetworkIdentity>().hasAuthority);
+                   
                     CmdRemoveAuthority(c.GetComponent<NetworkIdentity>());
                     
                     if (CmdSetAuthority(c.GetComponent<NetworkIdentity>(), this.GetComponent<NetworkIdentity>()))
@@ -290,11 +290,8 @@ public class ActionHandler : NetworkBehaviour {
                     {
                         Debug.Log("Failed to add authority");
                     }
-                    
-                    
-                    Debug.Log("Player auth:" + c.GetComponent<NetworkIdentity>().hasAuthority);
-                   
-                    
+
+
                 }
                 else
                 {

@@ -19,6 +19,8 @@ public class CounterItem : NetworkBehaviour {
     
     public bool isOven = false;
 
+    public bool isServingStation = false;
+
     // Special variable for counters so we can have items
     // pre-placed before the game starts. Avoids issues
     // when client joins. When server begins, it will be marked

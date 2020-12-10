@@ -10,6 +10,7 @@ public class FoodItem : NetworkBehaviour {
     public bool cookable;
     public bool choppable;
     public bool burnt;
+    public string customName;
     public bool poisoned;
 
     // For things like fire extinguishers and GUNS! :) 

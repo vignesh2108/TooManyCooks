@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,6 +11,7 @@ public class DialogManager : MonoBehaviour
     public Text dialogText;
     public Animator animator;
     private Queue<string> sentences;
+    public bool isOpen = false;
     void Start()
     {
         sentences= new Queue<string>();
@@ -18,6 +20,7 @@ public class DialogManager : MonoBehaviour
     public void StartDialog(Dialog dialog)
     {    
         animator.SetBool("IsOpen", true);
+        isOpen = true;
         nameText.text = dialog.name;
         sentences.Clear();
         foreach (string sentence in dialog.sentences)
@@ -33,6 +36,7 @@ public class DialogManager : MonoBehaviour
         if (sentences.Count == 0)
         {
             EndDialog();
+            WaiterButton.S.gameObject.SetActive(true);
             return;
         }
 
@@ -40,11 +44,14 @@ public class DialogManager : MonoBehaviour
         dialogText.text = sentence;
     }
 
-    void EndDialog()
+    public void EndDialog()
     {    
+        isOpen = false;
         animator.SetBool("IsOpen", false);
-        Debug.Log("End of convo");
+        WaiterButton.S.gameObject.SetActive(true);
+     
     }
+    
 
     // Update is called once per frame
     
