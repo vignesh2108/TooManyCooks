@@ -87,6 +87,7 @@
      <Compile Include="Assets\Scripts\Player\UseButton.cs" />
      <Compile Include="Assets\Scripts\Player\VoteButton.cs" />
      <Compile Include="Assets\Scripts\Player\WaiterButton.cs" />
+     <Compile Include="Assets\Scripts\VoteManager.cs" />
      <None Include="Assets\Shaders\Legacy\CelShader.shader" />
      <None Include="Assets\Fonts\Roboto\LICENSE.txt" />
      <None Include="Assets\Shaders\SupercyanShader.shader" />

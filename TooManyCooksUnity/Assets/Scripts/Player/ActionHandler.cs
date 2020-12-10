@@ -18,6 +18,8 @@ public class ActionHandler : NetworkBehaviour {
 
     public bool continuousAction = false;
     public bool useButtonHeld = false;
+    
+    [SyncVar]
     public bool controlEnabled = true;
 
     [SyncVar]
@@ -45,6 +47,15 @@ public class ActionHandler : NetworkBehaviour {
         {
             UseButton.S.GetComponent<Button>().onClick.AddListener(UseAction);
             GrabButton.S.GetComponent<Button>().onClick.AddListener(GrabAction);
+            
+            VoteButton.S.GetComponent<Button>().onClick.AddListener(VoteAction);
+            
+            
+            VoteManager.S.voteButton1.GetComponent<Button>().onClick.AddListener(VoteForP1);
+            VoteManager.S.voteButton2.GetComponent<Button>().onClick.AddListener(VoteForP2);
+            VoteManager.S.voteButton3.GetComponent<Button>().onClick.AddListener(VoteForP3);
+            VoteManager.S.voteButton4.GetComponent<Button>().onClick.AddListener(VoteForP4);
+            VoteManager.S.closeButton.GetComponent<Button>().onClick.AddListener(VoteCloseAction);
 
             EventTrigger useButtonHoldTrigger = UseButton.S.gameObject.AddComponent<EventTrigger>();
             var pointerDown = new EventTrigger.Entry();
@@ -81,14 +92,14 @@ public class ActionHandler : NetworkBehaviour {
     {
         if (!isLocalPlayer) return;
         
-        if (Input.GetKeyDown(KeyCode.G))
+        if (Input.GetKeyDown(KeyCode.G) && controlEnabled)
         {
             Debug.Log("Trying to pickup.");
             GrabAction();
         }
 
         // To Change to suitable controls.
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R)  && controlEnabled)
         {
             UseAction();
         }
@@ -96,14 +107,14 @@ public class ActionHandler : NetworkBehaviour {
         // Check to see if we should do single action or perform continuous action
         if (continuousAction)
         {
-            if (Input.GetKey(KeyCode.U) || useButtonHeld)
+            if ((Input.GetKey(KeyCode.R) || useButtonHeld) && controlEnabled)
             {
                 UseAction();
             }
         }
         else
         {
-            if (Input.GetKeyDown(KeyCode.U))
+            if (Input.GetKeyDown(KeyCode.R)  && controlEnabled)
             {
                 UseAction();
             }
@@ -177,6 +188,71 @@ public class ActionHandler : NetworkBehaviour {
         }
 
     }
+
+    public void VoteAction()
+    {
+        // Player triggered vote!
+
+        GetComponent<PlayerScript>().DisableControls();
+        CmdTriggerVote(true);
+    }
+
+    public void VoteCloseAction()
+    {
+        CmdTriggerVote(false);
+    }
+    
+    public void VoteForP1()
+    {
+        Debug.Log("Vote for 1");
+        CmdVoteFor(0);
+        RemoveVotingButtons();
+    }
+    
+    public void VoteForP2()
+    {
+        Debug.Log("Vote for 2");
+        CmdVoteFor(1);
+        RemoveVotingButtons();
+    }
+    
+    public void VoteForP3()
+    {
+        Debug.Log("Vote for 3");
+        CmdVoteFor(2);
+        RemoveVotingButtons();
+    }
+    
+    public void VoteForP4()
+    {
+        Debug.Log("Vote for 4");
+        CmdVoteFor(3);
+        RemoveVotingButtons();
+    }
+
+    [Command]
+    void CmdVoteFor(int i)
+    {
+        Debug.Log("Vote for i on server");
+        VoteManager.S.UpdateVoteCount(i);
+        
+    }
+
+    [Command]
+    void CmdTriggerVote(bool enable)
+    {
+        VoteManager.S.StartVote(enable);
+    }
+
+
+    void RemoveVotingButtons()
+    {
+       
+        VoteManager.S.voteInstructionText.text = "Voting in progress... waiting for all players!";
+        VoteManager.S.VoteDialogButtons.SetActive(false);
+    }
+    
+    
 
     // GRAB ITEMS
     [Command]
@@ -321,20 +397,7 @@ public class ActionHandler : NetworkBehaviour {
         f.RpcClearGrabbed(velocity*40);
     }
 
-    //COMMAND TO MOVE PLAYER
-    [Server]
-    public void MovePlayer(Vector3 v)
-    {
-        gameObject.transform.position = v;
-        RpcMovePlayer(v);
-    }
-
-    [ClientRpc]
-    void RpcMovePlayer(Vector3 v)
-    {
-        gameObject.transform.position = v;
-    }
-
+    
     // CLEAR HANDS
     [ClientRpc]
     public void RpcClearHands()

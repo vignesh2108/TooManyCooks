@@ -11,6 +11,7 @@ public class GameManager : NetworkBehaviour
     public static GameManager S;
     public GameObject SmokePrefab;
     public bool isMobile;
+    public bool disableJoystick = false;
     public Dialog dialog;
 
     [SyncVar]
@@ -21,8 +22,11 @@ public class GameManager : NetworkBehaviour
 
     public int maxDishes = 10;
     public int maxGuestsPoisoned = 5;
-    public GameObject statsButton;
+    
+    public PlayerScript playerScript;
     public DialogManager dialogManager;
+
+    public bool isGameWon = false;
     
     private void Awake()
     {
@@ -39,6 +43,7 @@ public class GameManager : NetworkBehaviour
     private void Start()
     {
         WaiterButton.S.GetComponent<Button>().onClick.AddListener(ShowGameStats);
+        VoteManager.S.VoteDialogBox.SetActive(false);
     }
 
     public string checkGameWinCondition()
@@ -58,6 +63,11 @@ public class GameManager : NetworkBehaviour
 
     public void ShowGameStats()
     {
+        if (isGameWon)
+        {
+            showDialogHelper("");
+            return;
+        }
         string statsString = $"Pizzas served: {dishesServed}\n" +
                              $"Guests poisoned: {guestsPoisoned}\n";
         
@@ -67,10 +77,14 @@ public class GameManager : NetworkBehaviour
 
     public void showDialogHelper(string dialogString)
     {
-        WaiterButton.S.gameObject.SetActive(false);
-        dialog.name = "Waiter";
-        dialog.sentences.Clear();
-        dialog.sentences.Add(dialogString);
+        if (dialogString != "")
+        {
+            WaiterButton.S.gameObject.SetActive(false);
+            dialog.name = "Waiter";
+            dialog.sentences.Clear();
+            dialog.sentences.Add(dialogString);
+        }
+
         dialogManager.StartDialog(dialog);
     }
     
@@ -105,11 +119,15 @@ public class GameManager : NetworkBehaviour
             case "chefWin":
                 dialogString = $"The Chefs Win!\n" +
                                $"All guests served!\n";
+                isGameWon = true;
+                playerScript.DisableControls();
                 showDialogHelper(dialogString);
                 break;
             case "imposterWin":
                 dialogString = $"The Imposter Wins!\n" +
                                $"Guests poisoned: {maxGuestsPoisoned}\n";
+                isGameWon = true;
+                playerScript.DisableControls();
                 showDialogHelper(dialogString);
                 break;
         }

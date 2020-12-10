@@ -75,7 +75,9 @@ public class NetworkManagerScript : NetworkManager
         
         if (numPlayers >= minPlayers)
         {
+            VoteManager.S.numPlayers = numPlayers;
             imposterIndex = Random.Range(0, numPlayers);
+            VoteManager.S.imposterIndex = imposterIndex;
             for (int i = 0; i < numPlayers; i++)
             {
                 PlayerScript player = players[i].GetComponent<PlayerScript>();

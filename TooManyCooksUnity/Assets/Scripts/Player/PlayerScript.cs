@@ -73,6 +73,8 @@ public class PlayerScript : NetworkBehaviour
         {
             joystick = FloatingJoystick.S;
             cameraObject = CameraScript.S;
+            VoteManager.S.player = this;
+            GameManager.S.playerScript = this;
         }
         
         if (!isLocalPlayer)
@@ -125,6 +127,12 @@ public class PlayerScript : NetworkBehaviour
         }
     }
 
+    public void DisableControls(bool disable = true)
+    {
+        GameManager.S.disableJoystick = disable;
+        action.controlEnabled = !disable;
+    }
+
     
     
     // Update is called once per frame
@@ -147,11 +155,11 @@ public class PlayerScript : NetworkBehaviour
         }
         
         
-        if (GameManager.S.isMobile)
+        if (GameManager.S.isMobile && action.controlEnabled)
         {
             movementForce = new Vector3(joystick.Horizontal * moveSpeed, 0, joystick.Vertical * moveSpeed);
         }
-        else
+        else if (action.controlEnabled)
         {
             movementForce = new Vector3(Input.GetAxis("Horizontal") * moveSpeed, 0, Input.GetAxis("Vertical") * moveSpeed);
         }
