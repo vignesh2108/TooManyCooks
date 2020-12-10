@@ -138,12 +138,12 @@ public class PlayerScript : NetworkBehaviour
             return;
         }
 
-        if (isImposter && !assignedImposterColor)
+        if (isImposter)
         {
-            assignUpdatedColor();
-        } else if (!isImposter && assignedImposterColor)
+            playerNameText.text = "Imposter!";
+        } else if (!isImposter)
         {
-            assignUpdatedColor();
+            playerNameText.text = playerName;
         }
         
         
