@@ -148,7 +148,7 @@ public class PlayerScript : NetworkBehaviour
 
         if (isImposter)
         {
-            playerNameText.text = "Imposter!";
+            playerNameText.text = $"({playerName}) Imposter";
         } else if (!isImposter)
         {
             playerNameText.text = playerName;

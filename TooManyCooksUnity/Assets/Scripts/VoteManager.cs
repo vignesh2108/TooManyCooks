@@ -82,14 +82,14 @@ public class VoteManager : NetworkBehaviour
             {
                 if (votedIndex == imposterIndex)
                 {
-                    voteInstructionText.text = "Voting Complete!\n" +
-                                               "The chefs win!\n" +
+                    voteInstructionText.text = "Voting Complete! The chefs win!\n" +
                                                $"P{imposterIndex + 1} was the imposter!";
                 }
                 else
                 {
-                    voteInstructionText.text = $"Voting Complete!\nThe Chefs failed to identify P{imposterIndex + 1} as the imposter!" +
-                                               $"\nP{imposterIndex + 1} wins!";
+                    voteInstructionText.text = $"Voting Complete! P{imposterIndex + 1} wins!\n" +
+                                               $"The Chefs failed to identify P{imposterIndex + 1} as the imposter!\n";
+
                 }
                 // End Game here.
             }
