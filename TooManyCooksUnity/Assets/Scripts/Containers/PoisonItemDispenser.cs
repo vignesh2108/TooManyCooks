@@ -28,7 +28,10 @@ public class PoisonItemDispenser : ItemDispenser
          
          var obj = Instantiate(itemToDispense);
          obj.transform.position = transform.position;
-         obj.GetComponent<FoodItem>().poisoned = true;
+         if (player.GetComponent<PlayerScript>().isImposter)
+         {
+            obj.GetComponent<FoodItem>().poisoned = true;
+         }
 
          // Spawn the item to dispense
          NetworkServer.Spawn(obj);

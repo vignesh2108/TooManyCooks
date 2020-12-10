@@ -95,9 +95,13 @@ MonoBehaviour:
   itemOnCounter: {fileID: 0}
   continuousAction: 0
   placePos: {x: 0, y: 0, z: 0}
+  isOven: 0
+  isServingStation: 0
   isDirty: 0
   itemToDispense: {fileID: 7496906775212282300, guid: 05911f29c286f994a9b6e6bf0a8fa647,
     type: 3}
+  isPoisonDispenser: 0
+  waitTrigger: 0
 --- !u!1 &7615099219984263378
 GameObject:
   m_ObjectHideFlags: 0
@@ -157,8 +161,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 974e4860cba7dbd478b90327dbc32482, type: 2}
-  - {fileID: 2100000, guid: c7d4d55229668c54c9ce656beb9a14a1, type: 2}
+  - {fileID: 2100000, guid: efe4f58e895fa4e35933ce884c46f812, type: 2}
+  - {fileID: 2100000, guid: e867aca40d46e449cb298371d5f41bd8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

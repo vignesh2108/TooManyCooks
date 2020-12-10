@@ -1508,7 +1508,6 @@ GameObject:
   - component: {fileID: 7699222281150844819}
   - component: {fileID: 7699222281150844844}
   - component: {fileID: 7699222281150844816}
-  - component: {fileID: 6846878203356670021}
   - component: {fileID: 3035023248291628478}
   - component: {fileID: 4965999479624382029}
   - component: {fileID: 5825443904484219135}
@@ -1569,29 +1568,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 2
---- !u!114 &6846878203356670021
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7699222281150844847}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a989fbcbfcb2cc54491c3603e2372998, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
-  sceneObjectPrefab: {fileID: 6309392302185425174, guid: 3fb3a83bed677486593a9656e5b093fb,
-    type: 3}
-  hand: {fileID: 8387587211826364066}
-  tomatoPrefab: {fileID: 2757923359195229166, guid: 3b6003e47e4135d488b782e2ebe2320a,
-    type: 3}
-  doughPrefab: {fileID: 363186925671328557, guid: d922497fe14d84d498edbbb177ce3a96,
-    type: 3}
-  equippedItem: 0
-  canPickup: 0
 --- !u!114 &3035023248291628478
 MonoBehaviour:
   m_ObjectHideFlags: 0
