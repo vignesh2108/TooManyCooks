@@ -1469,7 +1469,7 @@ TextMesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6081284114776758883}
-  m_Text: Player Name
+  m_Text: 
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
@@ -1595,7 +1595,9 @@ MonoBehaviour:
   playerNameText: {fileID: 7497672117557166030}
   floatingInfo: {fileID: 170755147198427230}
   playerName: 
+  isImposter: 0
   playerColor: {r: 0, g: 0, b: 0, a: 0}
+  imposterColor: {r: 1, g: 0, b: 0, a: 1}
   hands: {fileID: 8387587211826364066}
   rb: {fileID: 7699222281150844816}
   action: {fileID: 0}
@@ -1636,6 +1638,7 @@ MonoBehaviour:
   counterInFocus: {fileID: 0}
   netID: {fileID: 0}
   continuousAction: 0
+  useButtonHeld: 0
   controlEnabled: 1
   itemInHandsName: 
   itemInHands: {fileID: 0}

@@ -8,21 +8,29 @@ public class OvenCounter : CounterItem
 {
 
     [SyncVar]
-    float cookProgress = 0;
+    public float cookProgress = 0;
+    double oldCookTimer = 0; 
 
     public Image progressBar;
     public GameObject progressCanvas;
+    
+    public GameObject exclamationPoint;
 
     public float cookSpeed = 1.2f;
 
     bool checkCook = false;
     float changeVelocity;
+
+ 
+    
     
     public Transform doorTransform;
+    
     private bool doorIsOpen = false;
     private bool isAnimating;
     public float doorAnimTime = 1f;
-    
+
+    private NetworkIdentity netID = null;
     
     IEnumerator PlayDoorAnim(bool open, bool alsoReverse = false)
     {
@@ -62,27 +70,23 @@ public class OvenCounter : CounterItem
             isAnimating = false;
     }
     
-    // OVERRIDE PLACEMENT POSITION HERE
+    // OVERRIDE PARENT PARAMS
     public override void Start()
     {
-
-        // Here we override the placement position
         base.Start();
-        //placePos = transform.position + transform.up * 0.1f - transform.forward * 0.1f;
+        isOven = true;
+        netID = GetComponent<NetworkIdentity>();
     }
     
     private void Update()
     {
-        if (checkCook)
+        if (checkCook && netID.hasAuthority)
         {
             CmdCookItem();
-            SmoothVal();
+           
         }
-            
-
+        SmoothVal();
         checkCook = CheckCookable(itemOnCounter);
-
-        
     }
 
 
@@ -91,19 +95,30 @@ public class OvenCounter : CounterItem
     {
         if (foodItem == null)
         {
+            exclamationPoint.SetActive(false);
             progressCanvas.SetActive(false);
             return false;
         }
             
-
-        if (foodItem.GetComponent<FoodItem>() != null)
+        FoodItem item = foodItem.GetComponent<FoodItem>();
+        if (item != null)
         {
             
-            if (foodItem.GetComponent<FoodItem>().cookable)
+            if (item.cookable)
             {
-                Debug.Log("Is Cookable!");
+                //Debug.Log("Is Cookable!");
+                FoodItem nextItem = item.cooksTo.GetComponent<FoodItem>();
+                if (nextItem.burnt)
+                {
+                    exclamationPoint.SetActive(true);
+                }
+                else
+                {
+                    exclamationPoint.SetActive(false);
+                }
                 return true;
             }
+            exclamationPoint.SetActive(false);
         }
         return false;
 
@@ -120,8 +135,21 @@ public class OvenCounter : CounterItem
     [Command]
     void CmdCookItem()
     {
+        if (itemOnCounter == null)
+        {
+            cookProgress = 0;
+            return;
+        }
 
-        cookProgress += cookSpeed * Time.deltaTime;
+        double now = NetworkTime.time;
+        if ((now - oldCookTimer) < 1)
+        {
+            // basically run this only every second on the server. 
+            return;
+        }
+
+        oldCookTimer = now;
+        cookProgress += cookSpeed;
 
         cookProgress = Mathf.Clamp(cookProgress, 0, 10f);
 
@@ -146,6 +174,7 @@ public class OvenCounter : CounterItem
             RpcCompleteCooking(oldItem, newItem);
             return;
         }
+        SmoothVal();
 
         RpcUpdateCooking(cookProgress);
     }
@@ -157,10 +186,10 @@ public class OvenCounter : CounterItem
         if (value > 0)
         {
             progressCanvas.SetActive(true);
-            
         }
         else progressCanvas.SetActive(false);
-
+        
+        SmoothVal();
         // progressBar.fillAmount = value / 10f;
     }
 
@@ -169,25 +198,37 @@ public class OvenCounter : CounterItem
     void RpcCompleteCooking(GameObject oldFood, GameObject newFood)
     {
         checkCook = CheckCookable(newFood);
+        cookProgress = 0;
         progressBar.fillAmount = 0;
         progressCanvas.SetActive(false);
         Destroy(oldFood);
     }
-
+    
+    
     public override void LocalPlaceItem(GameObject foodItem)
     {
+        StartCoroutine(PlayDoorAnim(true, true));
         base.LocalPlaceItem(foodItem);
         checkCook = CheckCookable(foodItem);
+    }
+    
+    [ClientRpc]
+    public override void RpcClearCounter()
+    {
+        base.RpcClearCounter();
+        StartCoroutine(PlayDoorAnim(true, true));
+      
     }
 
     void SmoothVal()
     {
-        float toVal = cookProgress / 10f;
-        float curVal = Mathf.SmoothDamp(progressBar.fillAmount, toVal, ref changeVelocity, 0.2f);
-        progressBar.fillAmount = curVal;
+        //float toVal = cookProgress / 10f;
+       // float curVal = Mathf.SmoothDamp(progressBar.fillAmount, toVal, ref changeVelocity, 0.2f);
+        progressBar.fillAmount = cookProgress / 10f;
 
         if (cookProgress == 0 || itemOnCounter == null)
             progressCanvas.SetActive(false);
+        
     }
 
 }

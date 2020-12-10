@@ -9,6 +9,8 @@ public class FoodItem : NetworkBehaviour {
     public string itemName;
     public bool cookable;
     public bool choppable;
+    public bool burnt;
+    public bool poisoned;
 
     // For things like fire extinguishers and GUNS! :) 
     public bool useable;
@@ -72,7 +74,7 @@ public class FoodItem : NetworkBehaviour {
             {
                 Transform hands = grabbedBy.GetComponent<PlayerScript>().hands.transform;
                 transform.position = hands.position;
-                transform.rotation = hands.rotation;
+                //transform.rotation = hands.rotation;
 
             }
         }

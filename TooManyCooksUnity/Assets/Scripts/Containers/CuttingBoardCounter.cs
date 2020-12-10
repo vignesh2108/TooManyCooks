@@ -9,8 +9,6 @@ public class CuttingBoardCounter : CounterItem {
     [SyncVar]
     float cutProgress = 0;
 
-    float localCutProgress = 0;
-
     public Image progressBar;
     public GameObject progressCanvas;
 
@@ -88,7 +86,7 @@ public class CuttingBoardCounter : CounterItem {
     [ClientRpc]
     void RpcUpdateProgress(float value)
     {
-        if (value > 0)
+        if (value > 0 && value < 10f)
         {
             progressCanvas.SetActive(true);
         }

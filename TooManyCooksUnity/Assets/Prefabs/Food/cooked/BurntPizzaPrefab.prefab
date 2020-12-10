@@ -244,6 +244,7 @@ MonoBehaviour:
   itemName: Cooked  Pizza
   cookable: 0
   choppable: 0
+  burnt: 1
   useable: 0
   continuousUse: 0
   dropOverride: 0

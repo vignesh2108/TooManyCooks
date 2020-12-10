@@ -16,6 +16,8 @@ public class CounterItem : NetworkBehaviour {
     public bool continuousAction = false;
 
     public Vector3 placePos;
+    
+    public bool isOven = false;
 
     // Special variable for counters so we can have items
     // pre-placed before the game starts. Avoids issues
@@ -79,7 +81,7 @@ public class CounterItem : NetworkBehaviour {
     }
 
     [ClientRpc]
-    public void RpcClearCounter()
+    public virtual void RpcClearCounter()
     {
         itemOnCounter = null;
     }

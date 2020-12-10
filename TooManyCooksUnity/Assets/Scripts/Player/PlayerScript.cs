@@ -13,8 +13,18 @@ public class PlayerScript : NetworkBehaviour
     
     [SyncVar(hook = nameof(OnNameChanged))]
     public string playerName;
+    
+    [SyncVar(hook = nameof(OnImposterChange))]
+    public bool isImposter;
+    
+    
     [SyncVar(hook = nameof(AssignHatColor))]
     public Color playerColor;
+
+    public Color imposterColor;
+    
+    private bool assignedImposterColor = false;
+    
     private Joystick joystick;
     private CameraScript cameraObject;
     public GameObject hands;
@@ -37,18 +47,14 @@ public class PlayerScript : NetworkBehaviour
         action = GetComponentInParent<ActionHandler>();
     }
 
-    public override void OnStartLocalPlayer()
+    /*public override void OnStartLocalPlayer()
     {
-        /*
-        floatingInfo.transform.localPosition = new Vector3(0, -0.3f, 0.6f);
-        floatingInfo.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
-        */
-        
-        string name = "Player" + Random.Range(100, 999);
-        Color color = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
-        CmdSetupPlayer(name, color);
+        //string name = "Player" + Random.Range(100, 999);
+        //Color color = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
+        Debug.Log($"player :{name}, {playerColor}");
+        CmdSetupPlayer(name, playerColor);
 
-    }
+    }*/
 
     [Command]
     public void CmdSetupPlayer(string _name, Color _color)
@@ -77,9 +83,34 @@ public class PlayerScript : NetworkBehaviour
     
     void OnNameChanged(string _Old, string _New)
     {
-        playerNameText.text = playerName;
+        Debug.Log("Name changed!");
+        playerName = _New;
+        playerNameText.text = _New;
     }
-    
+
+    public void OnImposterChange(bool old, bool _new)
+    {
+        if (_new == true || isImposter) // change to isLocalPlayer after testing
+        {
+            Debug.Log($"I am imposter: {isImposter}");
+            
+        }
+    }
+
+
+    private void assignUpdatedColor()
+    {
+        foreach (Renderer r in GetComponentsInChildren<Renderer>())
+        {
+                
+            if (r.gameObject.name == "hat")
+            {
+                Debug.Log($"Changing hat: {isImposter}");
+                r.material.color = isImposter? imposterColor : playerColor;
+                assignedImposterColor = isImposter;
+            }
+        }
+    }
     
     public void AssignHatColor(Color oldColor, Color newColor)
     {
@@ -89,6 +120,7 @@ public class PlayerScript : NetworkBehaviour
             if (r.gameObject.name == "hat")
             {
                 r.material.color = newColor;
+                assignedImposterColor = false;
             }
         }
     }
@@ -104,6 +136,14 @@ public class PlayerScript : NetworkBehaviour
         {
             
             return;
+        }
+
+        if (isImposter && !assignedImposterColor)
+        {
+            assignUpdatedColor();
+        } else if (!isImposter && assignedImposterColor)
+        {
+            assignUpdatedColor();
         }
         
         

@@ -188,10 +188,6 @@ public class ActionHandler : NetworkBehaviour {
 
         if (counterFocus != null && f.grabbedBy == counterFocus)
         {
-            if (counterFocus.GetComponent<OvenCounter>() != null)
-            {
-                counterFocus.GetComponent<NetworkIdentity>().RemoveClientAuthority();
-            }
             counterFocus.GetComponent<CounterItem>().itemOnCounterName = "";
             counterFocus.GetComponent<CounterItem>().RpcClearCounter();
         }
@@ -244,9 +240,11 @@ public class ActionHandler : NetworkBehaviour {
                 return;
             }
         }
+        Debug.Log("PlaceItem called.");
 
         if (itemFocus != null && itemFocus != foodItem)
         {
+            Debug.Log("PlaceItem called on food container.");
             if (itemFocus.GetComponent<FoodContainer>() != null)
             {
                 var c = itemFocus.GetComponent<FoodContainer>();
@@ -267,6 +265,7 @@ public class ActionHandler : NetworkBehaviour {
 
         else if (counterFocus != null)
         {
+            Debug.Log("Trying to place item!");
             var c = counterFocus.GetComponent<CounterItem>();
 
             if (c.itemOnCounter == null && c.itemOnCounter != foodItem)
@@ -274,15 +273,35 @@ public class ActionHandler : NetworkBehaviour {
                 f.grabbedByName = counterFocus.name;
                 c.itemOnCounterName = itemInHands.name;
                 itemInHandsName = "";
-                //f.RpcClearGrabbed(Vector3.zero);
-                if (counterFocus.GetComponent<OvenCounter>() != null)
-                {
-                    counterFocus.GetComponent<NetworkIdentity>().AssignClientAuthority(connectionToClient);
-                }
 
-                c.PlaceItem(foodItem);
-                RpcClearHands();
-                
+                if (c.isOven)
+                {
+                    Debug.Log("Trying to place item in oven!");
+                    Debug.Log("Player auth:" + c.GetComponent<NetworkIdentity>().hasAuthority);
+                    CmdRemoveAuthority(c.GetComponent<NetworkIdentity>());
+                    
+                    if (CmdSetAuthority(c.GetComponent<NetworkIdentity>(), this.GetComponent<NetworkIdentity>()))
+                    {
+                        Debug.Log("Placing item in oven!");
+                        c.PlaceItem(foodItem);
+                        RpcClearHands();
+                    }
+                    else
+                    {
+                        Debug.Log("Failed to add authority");
+                    }
+                    
+                    
+                    Debug.Log("Player auth:" + c.GetComponent<NetworkIdentity>().hasAuthority);
+                   
+                    
+                }
+                else
+                {
+                    Debug.Log("Placing item in container!");
+                    c.PlaceItem(foodItem);
+                    RpcClearHands();
+                }
                 return;
             }
 
@@ -346,6 +365,43 @@ public class ActionHandler : NetworkBehaviour {
         // Running as a command, basically.
         c.UseCounter(player, cont, deltaTime);
     }
+    
+    
+    
+    /// ASSIGN AND REMOVE CLIENT AUTHORITY///
 
+    bool CmdSetAuthority (NetworkIdentity grabID, NetworkIdentity playerID) {
+        try
+        {
+            return grabID.AssignClientAuthority(playerID.connectionToClient);
+            
+        }
+        catch (Exception e)
+        {
+            Debug.Log("Exception while trying to assign authority: " + e.Message);
+            grabID.RemoveClientAuthority();
+            try
+            {
+                return grabID.AssignClientAuthority(playerID.connectionToClient);
+
+            }
+            catch (Exception e2)
+            {
+                Debug.Log("Exception while trying to assign authority: " + e2.Message);
+                return false;
+            }
+        }
+    }
+
+    void CmdRemoveAuthority (NetworkIdentity grabID) {
+        try
+        {
+            grabID.RemoveClientAuthority();
+        }
+        catch (Exception e)
+        {
+            
+        }
+    }
 
 }
